@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="mainPane" fx:id="contextProgramRegistry" prefHeight="600.0" prefWidth="1000.0" stylesheets="@assets/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.ProgramRegistrationFormController">
+   <children>
+      <Label fx:id="lblDate" layoutX="470.0" layoutY="26.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
+      <Label fx:id="lblDay" layoutX="395.0" layoutY="26.0" prefHeight="16.0" prefWidth="59.0" text="Saturday" />
+      <Label fx:id="lblTime" layoutX="570.0" layoutY="26.0" text="15:16:58" />
+      <Label layoutX="336.0" layoutY="63.0" text="New Training Program">
+         <font>
+            <Font name="Serif Regular" size="30.0" />
+         </font>
+      </Label>
+      <Separator layoutX="297.0" layoutY="112.0" prefHeight="0.0" prefWidth="427.0" />
+      <AnchorPane layoutX="80.0" layoutY="155.0" prefHeight="42.0" prefWidth="197.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtProgramId" editable="false" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="CT0301" styleClass="textField">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Program ID" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+      <AnchorPane layoutX="296.0" layoutY="155.0" prefHeight="42.0" prefWidth="257.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtProgram" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="235.0" promptText="Computer Hardware" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Program" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="574.0" layoutY="155.0" prefHeight="42.0" prefWidth="158.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtDuration" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="133.0" promptText="6 months" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Duration" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="755.0" layoutY="155.0" prefHeight="42.0" prefWidth="171.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtFee" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="50,000.00" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Fee (LKR)" />
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btnAddProgram" buttonType="RAISED" layoutX="781.0" layoutY="224.0" onAction="#addProgramOnAction" prefHeight="42.0" prefWidth="145.0" style="-fx-background-color: #31AFB4; -fx-background-radius: 10;" text="Add Program" textFill="WHITE">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="20" />
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="105.0" fitWidth="117.0" layoutX="880.0" layoutY="10.0">
+         <image>
+            <Image url="@assets/images/logo.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="24.0" layoutY="26.0" onAction="#goToDashBoardOnAction" prefHeight="55.0" prefWidth="73.0" style="-fx-background-radius: 100;" text=" ">
+         <graphic>
+            <MaterialDesignIconView fill="#31afb4" glyphName="HOME" size="60" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TableView fx:id="tblProgram" layoutX="79.0" layoutY="295.0" prefHeight="230.0" prefWidth="853.0">
+        <columns>
+          <TableColumn fx:id="colProgramID" prefWidth="169.0" text="Program ID" />
+          <TableColumn fx:id="colProgram" prefWidth="301.0" text="Program" />
+            <TableColumn fx:id="colDuration" prefWidth="182.0" text="Duration" />
+            <TableColumn fx:id="colFee" prefWidth="200.0" text="Fee (LKR)" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnEditProgram" buttonType="RAISED" layoutX="615.0" layoutY="224.0" onAction="#updateProgramOnAction" prefHeight="42.0" prefWidth="145.0" style="-fx-background-color: #31AFB4; -fx-background-radius: 10;" text="Edit" textFill="WHITE">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="PENCIL" size="20" />
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnDeleteProgram" buttonType="RAISED" layoutX="80.0" layoutY="224.0" onAction="#deleteProgramOnAction" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #999; -fx-background-radius: 10;" text="Remove" textFill="WHITE">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="DELETE" size="20" />
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

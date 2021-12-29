@@ -1,0 +1,40 @@
+#mainPane{
+    -fx-background-color: white;
+}
+
+/*
+.btn{
+    -fx-background-color: #0147d4;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+*/
+
+.textPane{
+    -fx-background-color: white;
+    -fx-border-color: rgba(76, 73, 73, 0.83);
+    -fx-border-radius: 8px;
+}
+.textField{
+    -fx-background-color: white;
+    -fx-prompt-text-fill: #726d6d;
+}
+.textLabel{
+    -fx-background-color: white;
+    -fx-padding: 0 5px 0px 5px;
+    -fx-font-weight: bold;
+    /*-fx-text-fill: rgba(76, 73, 73, 0.83);;*/
+}
+
+.combo-box{
+    -fx-background-color: white;
+    /*-fx-fill: #726d6d;*/
+}
+
+.jfx-date-picker:editable > .date-picker-display-node > .input-line{
+    -fx-background-color: white;
+}
+
+.jfx-date-picker:editable > .date-picker-display-node > .input-focused-line{
+    -fx-background-color: white;
+}

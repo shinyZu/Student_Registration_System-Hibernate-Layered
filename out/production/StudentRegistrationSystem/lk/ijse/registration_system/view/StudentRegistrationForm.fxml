@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="contextRegistry" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@assets/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.StudentRegistrationFormController">
+   <children>
+      <Label fx:id="lblDate" layoutX="468.0" layoutY="16.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
+      <Label fx:id="lblDay" layoutX="393.0" layoutY="16.0" prefHeight="16.0" prefWidth="59.0" text="Saturday" />
+      <Label fx:id="lblTime" layoutX="568.0" layoutY="16.0" text="15:16:58" />
+      <Label layoutX="383.0" layoutY="58.0" text="New Registration">
+         <font>
+            <Font name="Serif Regular" size="30.0" />
+         </font>
+      </Label>
+      <Separator layoutX="295.0" layoutY="102.0" prefHeight="0.0" prefWidth="427.0" />
+      <AnchorPane layoutX="105.0" layoutY="139.0" prefHeight="42.0" prefWidth="257.0" styleClass="textPane">
+         <children>
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student ID" />
+            <ComboBox fx:id="cmbStudentId" layoutX="14.0" layoutY="10.0" prefHeight="26.0" prefWidth="236.0" promptText="S001" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="105.0" layoutY="206.0" prefHeight="42.0" prefWidth="395.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtStudentName" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="370.0" promptText="Kamal Perera" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student Full Name" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="105.0" layoutY="275.0" prefHeight="42.0" prefWidth="395.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtAddress" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="370.0" promptText="Galle" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student Address" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="105.0" layoutY="342.0" prefHeight="42.0" prefWidth="175.0" styleClass="textPane">
+         <children>
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Date Of Birth" />
+            <JFXDatePicker fx:id="datePicker" layoutX="9.0" layoutY="9.0" prefHeight="26.0" prefWidth="157.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="325.0" layoutY="342.0" prefHeight="42.0" prefWidth="175.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtAge" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="22" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Age" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="106.0" layoutY="405.0" prefHeight="42.0" prefWidth="395.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtEmail" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="370.0" promptText="kamal@gmail.com" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Email" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="106.0" layoutY="469.0" prefHeight="42.0" prefWidth="197.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtContactNo" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="0712345678" styleClass="textField" />
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Contact Number" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="597.0" layoutY="140.0" prefHeight="42.0" prefWidth="317.0" styleClass="textPane">
+         <children>
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Program" />
+            <ComboBox fx:id="cmbProgram" layoutX="12.0" layoutY="9.0" prefHeight="26.0" prefWidth="293.0" promptText="Training Program">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btnSearch" alignment="CENTER" buttonType="RAISED" layoutX="403.0" layoutY="143.0" onAction="#searchOnAction" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 10;" text="Search" textFill="WHITE">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="20" text="" />
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="795.0" layoutY="532.0" onAction="#registerStudentOnAction" prefHeight="42.0" prefWidth="117.0" style="-fx-background-color: #31AFB4; -fx-background-radius: 10;" text="Register" textFill="WHITE">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_PLUS" size="20" />
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="597.0" layoutY="206.0" prefHeight="42.0" prefWidth="317.0" styleClass="textPane">
+         <children>
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Program Fee(LKR)" />
+            <TextField fx:id="txtProgramFee" editable="false" layoutX="14.0" layoutY="9.0" prefHeight="28.0" prefWidth="293.0" promptText="100,000.00" styleClass="textField">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+      <AnchorPane layoutX="597.0" layoutY="278.0" prefHeight="169.0" prefWidth="317.0" styleClass="textPane">
+         <children>
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Registered Programs" />
+            <ListView fx:id="listRegisteredPrograms" layoutX="14.0" layoutY="14.0" prefHeight="144.0" prefWidth="293.0" style="-fx-background-color: white;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="597.0" layoutY="469.0" prefHeight="42.0" prefWidth="317.0" styleClass="textPane">
+         <children>
+            <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Upfront Fee(LKR)" />
+            <TextField fx:id="txtUpfrontFee" layoutX="14.0" layoutY="9.0" prefHeight="28.0" prefWidth="293.0" promptText="50,000.00" styleClass="textField" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="105.0" fitWidth="117.0" layoutX="870.0">
+         <image>
+            <Image url="@assets/images/logo.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="14.0" layoutY="16.0" onAction="#goToDashBoardOnAction" prefHeight="55.0" prefWidth="73.0" style="-fx-background-radius: 100;" text=" ">
+         <graphic>
+            <MaterialDesignIconView fill="#31afb4" glyphName="HOME" size="60" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="mainPane" fx:id="contextDashboard" prefHeight="485.0" prefWidth="950.0" stylesheets="@assets/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.DashboardFormController">
+   <children>
+      <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="62.0" layoutY="168.0" onAction="#loadRegistrationFormOnAction" prefHeight="210.0" prefWidth="218.0" style="-fx-background-radius: 500;" text=" ">
+         <graphic>
+            <ImageView fitHeight="200.0" fitWidth="200.0">
+               <image>
+                  <Image url="@assets/images/registration.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="135.0" layoutY="378.0" text="Registration">
+         <font>
+            <Font name="Manjari Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="339.0" layoutY="180.0" onAction="#loadProgramFormOnAction" style="-fx-background-radius: 500;" text=" ">
+         <graphic>
+            <ImageView fitHeight="176.0" fitWidth="200.0">
+               <image>
+                  <Image url="@assets/images/programs.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="439.0" layoutY="378.0" text="Programs">
+         <font>
+            <Font name="Manjari Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="633.0" layoutY="179.0" onAction="#loadStudentRecordsOnAction" prefHeight="175.0" prefWidth="244.0" style="-fx-background-radius: 500;" text=" ">
+         <graphic>
+            <ImageView fitHeight="178.0" fitWidth="229.0">
+               <image>
+                  <Image url="@assets/images/students.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="701.0" layoutY="378.0" text="Student Details">
+         <font>
+            <Font name="Manjari Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="62.0" layoutY="35.0" prefHeight="70.0" prefWidth="604.0" text="Student Registration System" textFill="#55c2bb">
+         <font>
+            <Font name="Dyuthi Regular" size="51.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="123.0" fitWidth="154.0" layoutX="785.0" layoutY="15.0">
+         <image>
+            <Image url="@assets/images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
