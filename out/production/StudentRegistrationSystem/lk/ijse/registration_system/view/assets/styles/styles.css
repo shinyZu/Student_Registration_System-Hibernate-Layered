@@ -38,3 +38,187 @@
 .jfx-date-picker:editable > .date-picker-display-node > .input-focused-line{
     -fx-background-color: white;
 }
+
+/*---------------------------------------------------Table View------------------------------------*/
+
+.table-view{
+    /*-fx-background-color:  #5C8D89;*/
+    -fx-background-color:  #31afb4;
+    -fx-background-radius: 10;
+}
+
+.table-view .column-header-background{
+    /*-fx-background-color:   #5C8D89 ;*/
+    -fx-background-color:   #31afb4 ;
+    -fx-background-radius: 5;
+}
+
+.table-view:row-selection > .virtual-flow > .clipped-container > .sheet{
+    -fx-background-radius: 80;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+/*
+.table-view .table-cell{
+    -fx-text-fill: white;
+}*/
+
+.table-row-cell{
+    /*-fx-background-color: -fx-table-cell-border-color, #79ada1*/ /*#616161*/;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #88e3e7;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-view .table-row-cell:selected{
+    -fx-background-color:linear-gradient(to right, rgb(236, 127, 46), rgb(241, 215, 80));
+}
+
+.table-view .table-row-cell:selected{
+    -fx-font-weight: bold;
+    /*-fx-text-fill: white;*/
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color:   #31afb4 /*transparent*/;
+}
+
+.table-view > .virtual-flow > .corner{
+    -fx-background-color:   #31afb4;
+    -fx-background-insets: 0 10 0 0 ;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical > .thumb,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .thumb{
+    -fx-background-color:  white;
+    -fx-opacity: 50%;
+    -fx-background-insets: 5, 0, 0;
+}
+
+.table-view > .column-header-background > .filler {
+    -fx-background-color:  #31afb4;
+    -fx-background-insets: 10,0,0,0;
+}
+
+/*---------------------------------------------------ComboBox------------------------------------*/
+
+.combo-box {
+    -fx-color: -fx-base;
+    -fx-background-color:dark grey;
+}
+
+/*
+.combo-box > .list-cell:focused:filled:selected > .text{
+    -fx-fill: white;
+}
+*/
+
+.combo-box:selected {
+    -fx-background-color:transparent;
+}
+
+.combo-box-popup .list-view {
+    -fx-color: -fx-base;
+    -fx-background-color:  #31afb4;
+
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 10 10 10, 0 5 5 5, 0 4 4 4;
+    -fx-padding: 0.333333em 0.333333em 0.666667em 0.083333em;
+
+}
+
+.combo-box-popup .list-view .list-cell:filled {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    /*-fx-font-weight: bold;*/
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected{
+    -fx-font-weight: bold;
+}
+
+.combo-box-popup .list-view .list-cell:hover{
+    -fx-font-weight: bold;
+    /*-fx-text-fill: black;*/
+}
+
+.combo-box > .list-cell:focused:filled:selected {
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color:linear-gradient(to right, rgb(236, 127, 46), rgb(241, 215, 80));
+}
+
+.combo-box > .combo-box-popup > .list-view > .virtual-flow > .scroll-bar:vertical > .track,
+.combo-box > .combo-box-popup > .list-view > .virtual-flow > .scroll-bar:vertical > .track-background {
+    -fx-background-color:  #31afb4;
+}
+
+.combo-box > .combo-box-popup > .list-view > .virtual-flow > .scroll-bar:vertical > .thumb {
+    -fx-background-color:  white;
+    -fx-opacity: 50%;
+    -fx-background-insets: 5, 0, 0;
+}
+
+/*--------------------------------------------------ListView------------------------------------*/
+
+/*
+.list-view {
+    -fx-background-color: #31afb4;
+}
+
+.list-view > .virtual-flow > .clipped-container > .sheet{
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-background-color: #31afb4;
+}
+.list-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.list-view > .virtual-flow > .scroll-bar:vertical > .track,
+.list-view > .virtual-flow > .scroll-bar:horizontal > .track-background,
+.list-view > .virtual-flow > .scroll-bar:vertical > .track-background {
+    -fx-background-color:  #31afb4 !*transparent*!;
+}
+
+.list-view > .virtual-flow > .scroll-bar:horizontal > .thumb,
+.list-view > .virtual-flow > .scroll-bar:vertical > .thumb{
+    -fx-background-color:  white;
+    -fx-opacity: 50%;
+    -fx-background-insets: 5, 0, 0;
+}
+
+.list-cell:filled {
+    -fx-background-color:  #31afb4;
+}
+
+.list-view .list-cell:filled:hover {
+    -fx-background-color:linear-gradient(to right, rgb(236, 127, 46), rgb(241, 215, 80));
+}
+
+.list-view .list-cell:filled:selected *{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.list-view .list-cell:hover{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+*/

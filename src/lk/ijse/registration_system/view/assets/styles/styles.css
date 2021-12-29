@@ -65,10 +65,10 @@
 .table-view .column-header {
     -fx-background-color: transparent;
 }
-
+/*
 .table-view .table-cell{
-    -fx-text-fill: black;
-}
+    -fx-text-fill: white;
+}*/
 
 .table-row-cell{
     /*-fx-background-color: -fx-table-cell-border-color, #79ada1*/ /*#616161*/;
@@ -86,8 +86,8 @@
     -fx-background-color:linear-gradient(to right, rgb(236, 127, 46), rgb(241, 215, 80));
 }
 
-.table-view .table-row-cell:selected *{
-    -fx-font-weight: bolder;
+.table-view .table-row-cell:selected{
+    -fx-font-weight: bold;
     /*-fx-text-fill: white;*/
 }
 
@@ -124,13 +124,15 @@
     -fx-background-color:dark grey;
 }
 
-/*.combo-box > .list-cell:focused:filled:selected > .text{
+/*
+.combo-box > .list-cell:focused:filled:selected > .text{
     -fx-fill: white;
-}*/
+}
+*/
 
-/*.combo-box:selected {
+.combo-box:selected {
     -fx-background-color:transparent;
-}*/
+}
 
 .combo-box-popup .list-view {
     -fx-color: -fx-base;
@@ -178,6 +180,7 @@
 
 /*--------------------------------------------------ListView------------------------------------*/
 
+/*
 .list-view {
     -fx-background-color: #31afb4;
 }
@@ -191,7 +194,7 @@
 .list-view > .virtual-flow > .scroll-bar:vertical > .track,
 .list-view > .virtual-flow > .scroll-bar:horizontal > .track-background,
 .list-view > .virtual-flow > .scroll-bar:vertical > .track-background {
-    -fx-background-color:  #31afb4 /*transparent*/;
+    -fx-background-color:  #31afb4 !*transparent*!;
 }
 
 .list-view > .virtual-flow > .scroll-bar:horizontal > .thumb,
@@ -218,3 +221,4 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
+*/
