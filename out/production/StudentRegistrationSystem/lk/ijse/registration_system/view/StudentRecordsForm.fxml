@@ -30,7 +30,10 @@
       </ImageView>
       <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="34.0" layoutY="36.0" onAction="#goToDashBoardOnAction" prefHeight="55.0" prefWidth="73.0" style="-fx-background-radius: 100;" text=" ">
          <graphic>
-            <MaterialDesignIconView fill="#31afb4" glyphName="HOME" size="60" />
+            <MaterialDesignIconView fill="#31afb4" glyphName="HOME" size="60">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></MaterialDesignIconView>
          </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -46,6 +49,9 @@
             <TableColumn fx:id="colEmail" prefWidth="145.0" text="Email" />
             <TableColumn fx:id="colContactNo" prefWidth="107.0" text="Contact No" />
          </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </TableView>
       <TableView fx:id="tblRegistration" layoutX="89.0" layoutY="366.0" prefHeight="181.0" prefWidth="853.0">
          <columns>
@@ -57,6 +63,9 @@
             <TableColumn fx:id="colDateOfRegistry" prefWidth="143.0" text="Date Of Registry" />
             <TableColumn fx:id="colUpfrontFee" prefWidth="150.0" text="Upfront Fee (LKR)" />
          </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </TableView>
    </children>
 </AnchorPane>

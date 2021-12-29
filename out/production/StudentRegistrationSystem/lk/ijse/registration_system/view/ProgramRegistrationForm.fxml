@@ -61,6 +61,9 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <ImageView fitHeight="105.0" fitWidth="117.0" layoutX="880.0" layoutY="10.0">
          <image>
@@ -69,7 +72,10 @@
       </ImageView>
       <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="24.0" layoutY="26.0" onAction="#goToDashBoardOnAction" prefHeight="55.0" prefWidth="73.0" style="-fx-background-radius: 100;" text=" ">
          <graphic>
-            <MaterialDesignIconView fill="#31afb4" glyphName="HOME" size="60" />
+            <MaterialDesignIconView fill="#31afb4" glyphName="HOME" size="60">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></MaterialDesignIconView>
          </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -82,6 +88,9 @@
             <TableColumn fx:id="colDuration" prefWidth="182.0" text="Duration" />
             <TableColumn fx:id="colFee" prefWidth="200.0" text="Fee (LKR)" />
         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </TableView>
       <JFXButton fx:id="btnEditProgram" buttonType="RAISED" layoutX="615.0" layoutY="224.0" onAction="#updateProgramOnAction" prefHeight="42.0" prefWidth="145.0" style="-fx-background-color: #31AFB4; -fx-background-radius: 10;" text="Edit" textFill="WHITE">
          <graphic>
@@ -90,6 +99,9 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton fx:id="btnDeleteProgram" buttonType="RAISED" layoutX="80.0" layoutY="224.0" onAction="#deleteProgramOnAction" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #999; -fx-background-radius: 10;" text="Remove" textFill="WHITE">
          <graphic>
@@ -98,6 +110,9 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
    </children>
 </AnchorPane>

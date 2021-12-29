@@ -28,7 +28,10 @@
       <AnchorPane layoutX="105.0" layoutY="139.0" prefHeight="42.0" prefWidth="257.0" styleClass="textPane">
          <children>
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student ID" />
-            <ComboBox fx:id="cmbStudentId" layoutX="14.0" layoutY="10.0" prefHeight="26.0" prefWidth="236.0" promptText="S001" />
+            <ComboBox fx:id="cmbStudentId" layoutX="14.0" layoutY="10.0" prefHeight="26.0" prefWidth="236.0" promptText="S001">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="105.0" layoutY="206.0" prefHeight="42.0" prefWidth="395.0" styleClass="textPane">
@@ -46,7 +49,10 @@
       <AnchorPane layoutX="105.0" layoutY="342.0" prefHeight="42.0" prefWidth="175.0" styleClass="textPane">
          <children>
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Date Of Birth" />
-            <JFXDatePicker fx:id="datePicker" layoutX="9.0" layoutY="9.0" prefHeight="26.0" prefWidth="157.0" />
+            <JFXDatePicker fx:id="datePicker" editable="false" layoutX="9.0" layoutY="9.0" prefHeight="26.0" prefWidth="157.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXDatePicker>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="325.0" layoutY="342.0" prefHeight="42.0" prefWidth="175.0" styleClass="textPane">
@@ -84,6 +90,9 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="795.0" layoutY="532.0" onAction="#registerStudentOnAction" prefHeight="42.0" prefWidth="117.0" style="-fx-background-color: #31AFB4; -fx-background-radius: 10;" text="Register" textFill="WHITE">
          <graphic>
@@ -92,6 +101,9 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <AnchorPane layoutX="597.0" layoutY="206.0" prefHeight="42.0" prefWidth="317.0" styleClass="textPane">
          <children>
@@ -108,7 +120,10 @@
       <AnchorPane layoutX="597.0" layoutY="278.0" prefHeight="169.0" prefWidth="317.0" styleClass="textPane">
          <children>
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Registered Programs" />
-            <ListView fx:id="listRegisteredPrograms" layoutX="14.0" layoutY="14.0" prefHeight="144.0" prefWidth="293.0" />
+            <ListView fx:id="listRegisteredPrograms" layoutX="14.0" layoutY="14.0" prefHeight="144.0" prefWidth="293.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ListView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="597.0" layoutY="469.0" prefHeight="42.0" prefWidth="317.0" styleClass="textPane">

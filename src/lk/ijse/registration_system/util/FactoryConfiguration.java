@@ -1,5 +1,6 @@
 package lk.ijse.registration_system.util;
 
+import lk.ijse.registration_system.entity.Login;
 import lk.ijse.registration_system.entity.Program;
 import lk.ijse.registration_system.entity.Registration;
 import lk.ijse.registration_system.entity.Student;
@@ -28,7 +29,8 @@ public class FactoryConfiguration {
         Configuration configuration = new Configuration().mergeProperties(properties);
         configuration.addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Program.class)
-                .addAnnotatedClass(Registration.class);
+                .addAnnotatedClass(Registration.class)
+                .addAnnotatedClass(Login.class);
 
         StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);

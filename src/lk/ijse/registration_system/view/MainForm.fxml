@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="mainPane" fx:id="loginPane" prefHeight="297.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.MainFormController">
+<AnchorPane id="mainPane" fx:id="loginPane" prefHeight="360.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.MainFormController">
    <children>
       <Label layoutX="141.0" layoutY="31.0" text="LOGIN">
          <font>
@@ -18,12 +18,26 @@
       </Label>
       <MaterialDesignIconView fill="#31afb4" glyphName="ACCOUNT" layoutX="28.0" layoutY="108.0" size="30" />
       <MaterialDesignIconView fill="#31afb4" glyphName="LOCK" layoutX="28.0" layoutY="177.0" size="30" />
-      <JFXTextField labelFloat="true" layoutX="72.0" layoutY="84.0" prefHeight="26.0" prefWidth="230.0" promptText="Username" />
-      <JFXTextField layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" />
-      <JFXPasswordField labelFloat="true" layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" promptText="Password" />
-      <MaterialDesignIconView glyphName="LOCK_OPEN" layoutX="279.0" layoutY="171.0" size="15" />
-      <MaterialDesignIconView glyphName="LOCK" layoutX="279.0" layoutY="171.0" size="15" />
+      <JFXTextField fx:id="txtUsername" focusColor="BLACK" labelFloat="true" layoutX="72.0" layoutY="84.0" prefHeight="26.0" prefWidth="230.0" promptText="Username" />
+      <JFXTextField fx:id="txtPassword" focusColor="BLACK" layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" promptText="Password" />
+      <JFXPasswordField fx:id="fieldPassword" focusColor="BLACK" labelFloat="true" layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" promptText="Password" />
+      <MaterialDesignIconView fx:id="iconHidePassword" glyphName="LOCK_OPEN" layoutX="279.0" layoutY="171.0" onMouseClicked="#hidePasswordOnAction" pickOnBounds="true" size="15">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></MaterialDesignIconView>
+      <MaterialDesignIconView fx:id="iconShowPassword" glyphName="LOCK" layoutX="279.0" layoutY="171.0" onMouseClicked="#showPasswordOnAction" pickOnBounds="true" size="15">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></MaterialDesignIconView>
       <JFXButton id="btnLogin" fx:id="btnLogin" buttonType="RAISED" layoutX="35.0" layoutY="220.0" onAction="#loginOnAction" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: #31afb4; -fx-background-radius: 10;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton id="btnLogin" fx:id="btnSignUp" buttonType="RAISED" layoutX="34.0" layoutY="279.0" onAction="#signUpOnAction" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: #31afb4; -fx-background-radius: 10;" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

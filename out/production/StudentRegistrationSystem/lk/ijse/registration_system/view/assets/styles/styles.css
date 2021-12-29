@@ -222,3 +222,13 @@
     -fx-text-fill: white;
 }
 */
+
+/*--------------------------------------------------Date Picker------------------------------------*/
+
+.jfx-date-picker > .date-picker-display-node:readonly > .input-line,
+.jfx-date-picker > .date-picker-display-node:readonly > .input-focused-line{
+    -fx-background-color: transparent;
+}
+
+
+
