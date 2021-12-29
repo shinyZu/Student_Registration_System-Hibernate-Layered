@@ -108,7 +108,7 @@
       <AnchorPane layoutX="597.0" layoutY="278.0" prefHeight="169.0" prefWidth="317.0" styleClass="textPane">
          <children>
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Registered Programs" />
-            <ListView fx:id="listRegisteredPrograms" layoutX="14.0" layoutY="14.0" prefHeight="144.0" prefWidth="293.0" style="-fx-background-color: white;" />
+            <ListView fx:id="listRegisteredPrograms" layoutX="14.0" layoutY="14.0" prefHeight="144.0" prefWidth="293.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="597.0" layoutY="469.0" prefHeight="42.0" prefWidth="317.0" styleClass="textPane">
