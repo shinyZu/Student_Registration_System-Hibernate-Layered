@@ -9,6 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.registration_system.business.BOFactory;
@@ -17,6 +20,8 @@ import lk.ijse.registration_system.business.custom.VerifyUserBO;
 import lk.ijse.registration_system.dto.LoginDTO;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 public class MainFormController {
     public JFXButton btnLogin;
@@ -34,12 +39,84 @@ public class MainFormController {
     public Label lblNewUser;
     public Label lblAlreadyRegistered;
 
-
     VerifyUserBO verifyUserBO = (VerifyUserBO) BOFactory.getBOFactoryInstance().getBO(BOFactory.BOTypes.VERIFY_USER);
+
+    private KeyEvent event;
 
     public void initialize() {
         txtPassword.setVisible(false);
         iconHidePassword.setVisible(false);
+
+        txtUsername.setOnKeyReleased(event -> {
+            this.event = event;
+            validateFieldOnKeyRelease(event);
+        });
+
+        fieldPassword.setOnKeyReleased(event -> {
+            this.event = event;
+            validateFieldOnKeyRelease(event);
+        });
+
+        txtPassword.setOnKeyReleased(event -> {
+            this.event = event;
+            fieldPassword.setText(txtPassword.getText());
+            validateFieldOnKeyRelease(event);
+            validateHiddenPwdTextField();
+        });
+        mapValidations();
+    }
+
+    LinkedHashMap<TextField, Pattern> mapLoginDetails = new LinkedHashMap<>();
+    String userNameRegEx = "^[U][0-9]{3}$"; //U001, U002
+    String userPwdRegEx = "^[U][0-9]{3}[@][a-z]{3,6}$"; // U001@ijse
+    Pattern userNamePtn = Pattern.compile(userNameRegEx);
+    Pattern userPwdPtn = Pattern.compile(userPwdRegEx);
+
+    private void mapValidations() {
+        mapLoginDetails.put(txtUsername,userNamePtn);
+        mapLoginDetails.put(fieldPassword,userPwdPtn);
+    }
+
+    public void validateFieldOnKeyRelease(KeyEvent keyEvent) {
+        Object response = null;
+        response = validate();
+
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (response instanceof TextField) {
+                ((TextField) response).requestFocus();
+
+            } else if (response instanceof Boolean) {
+                //
+            }
+        }
+    }
+
+    private Object validate() {
+        for (TextField keyTextField: mapLoginDetails.keySet()) {
+            Pattern valuePattern = mapLoginDetails.get(keyTextField);
+            if (!valuePattern.matcher(keyTextField.getText()).matches()) {
+                if (!keyTextField.getText().isEmpty()) {
+                    keyTextField.getStylesheets().clear();
+                    keyTextField.getStylesheets().add(getClass().getResource("../view/assets/styles/invalidInput.css").toString());
+                }
+                return keyTextField;
+            }
+            keyTextField.getStylesheets().clear();
+            keyTextField.getStylesheets().add(getClass().getResource("../view/assets/styles/validInput.css").toString());
+        }
+        return true;
+    }
+
+    private void validateHiddenPwdTextField() {
+        boolean pwdMatches = Pattern.matches(userPwdRegEx, txtPassword.getText());
+        txtPassword.getStylesheets().clear();
+        if (pwdMatches) {
+            txtPassword.getStylesheets().add("lk/ijse/registration_system/view/assets/styles/validInput.css");
+            //btnLogin.requestFocus();
+        } else {
+            txtPassword.getStylesheets().add("lk/ijse/registration_system/view/assets/styles/invalidInput.css");
+            fieldPassword.getStylesheets().add("lk/ijse/registration_system/view/assets/styles/validInput.css");
+        }
     }
 
     private String fPassword = null;
@@ -53,7 +130,7 @@ public class MainFormController {
 
         fieldPassword.setLabelFloat(false);
         fieldPassword.setVisible(false);
-        //validateHiddenPwdTextField();
+        validateHiddenPwdTextField();
         fieldPassword.toBack();
         this.fPassword = fieldPassword.getText();
         fieldPassword.clear();
@@ -65,7 +142,7 @@ public class MainFormController {
 
         fieldPassword.setVisible(true);
         fieldPassword.setText(txtPassword.getText());
-       // validateFieldOnKeyRelease(event);
+       validateFieldOnKeyRelease(event);
         fieldPassword.setLabelFloat(true);
 
         txtPassword.setVisible(false);
@@ -84,8 +161,6 @@ public class MainFormController {
                 txtUsername.getText(),
                 fPassword
         );
-
-        //System.out.println("loginDTO: "+loginDTO);
 
         if(verifyUserBO.isVerifiedUser(loginDTO)){
             window.close();
@@ -116,9 +191,6 @@ public class MainFormController {
             new Alert(Alert.AlertType.WARNING, "User already Exist.....").show();
             return;
         }
-
-        /*System.out.println(txtUsername.getText());
-        System.out.println(fPassword);*/
 
         if (txtUsername.getText().isEmpty() || fPassword == null) {
             new Alert(Alert.AlertType.WARNING, "Invalid UserName or Password2...").show();

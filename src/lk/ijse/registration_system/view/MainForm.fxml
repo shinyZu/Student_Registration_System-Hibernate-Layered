@@ -31,9 +31,9 @@
       </Label>
       <MaterialDesignIconView fill="#31afb4" glyphName="ACCOUNT" layoutX="28.0" layoutY="108.0" size="30" />
       <MaterialDesignIconView fill="#31afb4" glyphName="LOCK" layoutX="28.0" layoutY="177.0" size="30" />
-      <JFXTextField fx:id="txtUsername" focusColor="BLACK" labelFloat="true" layoutX="72.0" layoutY="84.0" prefHeight="26.0" prefWidth="230.0" promptText="Username" />
-      <JFXTextField fx:id="txtPassword" focusColor="BLACK" layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" promptText="Password" />
-      <JFXPasswordField fx:id="fieldPassword" focusColor="BLACK" labelFloat="true" layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" promptText="Password" />
+      <JFXTextField fx:id="txtUsername" focusColor="#0b58d3" labelFloat="true" layoutX="72.0" layoutY="84.0" prefHeight="26.0" prefWidth="230.0" promptText="Username" />
+      <JFXTextField fx:id="txtPassword" focusColor="#0b58d3" layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" promptText="Password" />
+      <JFXPasswordField fx:id="fieldPassword" focusColor="#0b58d3" labelFloat="true" layoutX="72.0" layoutY="153.0" prefHeight="26.0" prefWidth="230.0" promptText="Password" />
       <MaterialDesignIconView fx:id="iconHidePassword" glyphName="LOCK_OPEN" layoutX="279.0" layoutY="171.0" onMouseClicked="#hidePasswordOnAction" pickOnBounds="true" size="15">
          <cursor>
             <Cursor fx:constant="HAND" />
