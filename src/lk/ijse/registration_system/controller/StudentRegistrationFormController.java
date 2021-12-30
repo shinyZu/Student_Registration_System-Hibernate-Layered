@@ -2,7 +2,6 @@ package lk.ijse.registration_system.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -11,26 +10,21 @@ import lk.ijse.registration_system.business.custom.StudentBO;
 import lk.ijse.registration_system.dto.CustomDTO;
 import lk.ijse.registration_system.dto.RegistrationDTO;
 import lk.ijse.registration_system.dto.StudentDTO;
-import lk.ijse.registration_system.entity.Student;
 import lk.ijse.registration_system.util.DateTimeUtil;
 import lk.ijse.registration_system.util.NavigationUtil;
 
-import javax.swing.text.DateFormatter;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Optional;
 
 public class StudentRegistrationFormController extends DateTimeUtil {
 
     private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactoryInstance().getBO(BOFactory.BOTypes.STUDENT);
+    private final ArrayList<String> programList = new ArrayList<>();
     public AnchorPane contextRegistry;
     public ComboBox<String> cmbStudentId;
     public TextField txtStudentName;
@@ -47,7 +41,6 @@ public class StudentRegistrationFormController extends DateTimeUtil {
     public ListView<String> listRegisteredPrograms;
     public TextField txtUpfrontFee;
     private URL resource;
-    private final ArrayList<String> programList = new ArrayList<>();
 
     public void initialize() {
         loadDateAndTime();
@@ -89,7 +82,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        StudentDTO studentDTO =  studentBO.getStudentDetails(cmbStudentId.getValue());
+        StudentDTO studentDTO = studentBO.getStudentDetails(cmbStudentId.getValue());
         txtStudentName.setText(studentDTO.getStudentName());
         txtAddress.setText(studentDTO.getAddress());
         datePicker.getEditor().setText(formatter.format(studentDTO.getDob()));
@@ -99,12 +92,13 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         cmbProgram.getSelectionModel().clearSelection();
         cmbProgram.setPromptText("Training Program");
         txtProgramFee.setText("0.0");
-        txtUpfrontFee.setText("0.0");
+        txtUpfrontFee.setPromptText("0.0");
+        //txtUpfrontFee.setText("0.0");
 
         ArrayList<CustomDTO> dtoList = studentBO.getRegisteredPrograms(cmbStudentId.getValue());
-        System.out.println("dtoList: " +dtoList);
+        System.out.println("dtoList: " + dtoList);
 
-        for (CustomDTO dto : dtoList ) {
+        for (CustomDTO dto : dtoList) {
             //programList.add(dto.getProgramName());
             listRegisteredPrograms.getItems().add(dto.getProgramName());
         }
@@ -116,7 +110,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
     public void registerStudentOnAction(ActionEvent actionEvent) throws ParseException {
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
 
-       // System.out.println("date1: "+datePicker.getEditor().getText());
+        // System.out.println("date1: "+datePicker.getEditor().getText());
         //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         //String date = formatter.format(datePicker.getEditor().getText());
 
@@ -130,6 +124,21 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         java.util.Date date = sdf.parse(strDate);
         java.sql.Date sqlDate = new Date(date.getTime());
         System.out.println("sqlDate: "+sqlDate);*/
+
+        ArrayList<TextField> fields = new ArrayList();
+        fields.add(txtStudentName);
+        fields.add(txtAddress);
+        fields.add(txtAge);
+        fields.add(txtEmail);
+        fields.add(txtContactNo);
+        fields.add(txtUpfrontFee);
+
+        for (TextField txt : fields) {
+            if (txt.getText().isEmpty() || cmbProgram.getValue() == null) {
+                new Alert(Alert.AlertType.WARNING, "Please fill in the required fields...", ButtonType.OK).show();
+                return;
+            }
+        }
 
         StudentDTO studentDTO = new StudentDTO(
                 //txtStudentId.getText(),
@@ -185,6 +194,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                     System.out.println(2);
                     if (studentBO.registerStudent(registrationDTO)) {
                         System.out.println(3);
+                        clearFields();
                         new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.1", ButtonType.OK).show();
 
                     } else {
@@ -196,6 +206,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                     System.out.println(5);
                     if (studentBO.registerStudent(studentDTO, registrationDTO)) {
                         loadStudentIDs();
+                        clearFields();
                         System.out.println(6);
                         new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.2", ButtonType.OK).show();
 
@@ -206,5 +217,25 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                 }
             }
         }
+    }
+
+    private void clearFields() {
+        txtStudentName.clear();
+        txtAddress.clear();
+        datePicker.getEditor().clear();
+        txtAge.clear();
+        txtEmail.clear();
+        txtContactNo.clear();
+        cmbProgram.getSelectionModel().clearSelection();
+        cmbProgram.setPromptText("Training Program");
+        txtProgramFee.setText("0.0");
+        //txtUpfrontFee.setText("0.0");
+        txtUpfrontFee.setPromptText("0.0");
+        listRegisteredPrograms.getItems().clear();
+    }
+
+    public void clearFieldsOnAction(ActionEvent actionEvent) {
+        clearFields();
+        cmbStudentId.setValue(studentBO.generateStudentID());
     }
 }

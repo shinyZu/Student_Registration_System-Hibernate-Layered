@@ -3,10 +3,7 @@ package lk.ijse.registration_system.entity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class Program {
     private String duration;
     private double fee;
 
-    @OneToMany(mappedBy = "program")
+    @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
     private List<Registration> regDetails = new ArrayList<>();
 
     public Program() {}

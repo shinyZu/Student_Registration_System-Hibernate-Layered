@@ -75,7 +75,7 @@ public class MainFormController {
                 fPassword
         );
 
-        System.out.println("loginDTO: "+loginDTO);
+        //System.out.println("loginDTO: "+loginDTO);
 
         if(verifyUserBO.isVerifiedUser(loginDTO)){
             window.close();
@@ -91,8 +91,6 @@ public class MainFormController {
     }
 
     public void signUpOnAction(ActionEvent actionEvent) throws IOException {
-
-
         if (fieldPassword.getText().equals("")) {
             this.fPassword = txtPassword.getText();
         } else if (txtPassword.getText().equals("")) {
@@ -109,37 +107,27 @@ public class MainFormController {
             return;
         }
 
-        System.out.println(txtUsername.getText());
-        System.out.println(fPassword);
+        /*System.out.println(txtUsername.getText());
+        System.out.println(fPassword);*/
 
         if (txtUsername.getText().isEmpty() || fPassword == null) {
             new Alert(Alert.AlertType.WARNING, "Invalid UserName or Password2...").show();
             return;
         }
 
-       // if (verifyUserBO.signUpAsNewUser(loginDTO)) {
-            if (verifyUserBO.checkForPasswordAvailability(loginDTO)) {
-                Stage window = (Stage) btnLogin.getScene().getWindow();
-                window.close();
+        if (verifyUserBO.checkForPasswordAvailability(loginDTO)) {
+            Stage window = (Stage) btnLogin.getScene().getWindow();
+            window.close();
 
-                verifyUserBO.signUpAsNewUser(loginDTO);
+            verifyUserBO.signUpAsNewUser(loginDTO);
 
-                window = new Stage();
-                window.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/DashboardForm.fxml"))));
-                window.show();
+            window = new Stage();
+            window.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/DashboardForm.fxml"))));
+            window.show();
 
-            } else {
-                new Alert(Alert.AlertType.WARNING, "Password not available...").show();
-                return;
-            }
-
-        /*} else {
-            new Alert(Alert.AlertType.WARNING, "Invalid UserName or Password1...").show();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Password not available...").show();
             return;
-        }*/
-
-
-
-
+        }
     }
 }
