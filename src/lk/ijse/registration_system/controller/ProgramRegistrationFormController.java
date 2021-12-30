@@ -1,25 +1,31 @@
 package lk.ijse.registration_system.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.registration_system.business.BOFactory;
 import lk.ijse.registration_system.business.custom.ProgramBO;
 import lk.ijse.registration_system.dto.ProgramDTO;
 import lk.ijse.registration_system.util.DateTimeUtil;
 import lk.ijse.registration_system.util.NavigationUtil;
+import lk.ijse.registration_system.util.ValidationUtil;
 import lk.ijse.registration_system.view.tm.ProgramTM;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class ProgramRegistrationFormController extends DateTimeUtil {
     public AnchorPane contextProgramRegistry;
+    public JFXButton btnAddProgram;
     private URL resource;
 
     public TextField txtProgramId;
@@ -34,9 +40,8 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
     public TableColumn colFee;
 
     private final ProgramBO programBO = (ProgramBO) BOFactory.getBOFactoryInstance().getBO(BOFactory.BOTypes.PROGRAM);
-    private ArrayList<ProgramTM> tmProgramList = new ArrayList<>();
+    private final ArrayList<ProgramTM> tmProgramList = new ArrayList<>();
     private int rowSelected = -1;
-
 
     public void initialize() {
         loadDateAndTime();
@@ -55,6 +60,7 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
             rowSelected = (int) newValue;
         });
 
+        mapValidations();
     }
 
     private void initTable() {
@@ -84,6 +90,30 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
         allPrograms.clear();
     }
 
+    LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+    Pattern programPattern = Pattern.compile("^[A-z ]{3,20}$");
+    Pattern durationPattern = Pattern.compile("^[0-9\\s]+[a-z]{4,}$");
+    Pattern feePattern = Pattern.compile("^[0-9]{3,}(.0)|[0-9]{3,}$");
+
+    private void mapValidations() {
+        map.put(txtProgram,programPattern);
+        map.put(txtDuration,durationPattern);
+        map.put(txtFee,feePattern);
+    }
+
+    public void validateFieldOnKeyRelease(KeyEvent keyEvent) {
+        Object response = ValidationUtil.validate(map,btnAddProgram);
+
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (response instanceof TextField) {
+                TextField errorText = (TextField) response;
+                errorText.requestFocus();
+            } else if (response instanceof Boolean) {
+                //
+            }
+        }
+    }
+
     private void loadDataToFields(ProgramTM rowSelected) {
         txtProgramId.setText(rowSelected.getProgramId());
         txtProgram.setText(rowSelected.getProgramName());
@@ -102,15 +132,14 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
 
     public void addProgramOnAction(ActionEvent actionEvent) {
         if (txtProgram.getText().equals("") || txtDuration.getText().equals("") || txtFee.getText().equals("")) {
-            new Alert(Alert.AlertType.WARNING,"Please fill the fields...",ButtonType.OK).show();
+            new Alert(Alert.AlertType.WARNING, "Please fill the fields...", ButtonType.OK).show();
             return;
         }
 
-        if (programAlreadyExist(txtProgramId.getText())){
-            new Alert(Alert.AlertType.WARNING,"Program Already Exist...", ButtonType.OK).show();
+        if (programAlreadyExist(txtProgramId.getText())) {
+            new Alert(Alert.AlertType.WARNING, "Program Already Exist...", ButtonType.OK).show();
             return;
         }
-
 
         ProgramDTO programDTO = new ProgramDTO(
                 txtProgramId.getText(),
@@ -118,15 +147,14 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
                 txtDuration.getText(),
                 Double.valueOf(txtFee.getText())
         );
-        System.out.println(programDTO);
 
-        if (programBO.addProgram(programDTO)){
-            new Alert(Alert.AlertType.CONFIRMATION,"Program Added Successfully", ButtonType.OK).show();
+        if (programBO.addProgram(programDTO)) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Program Added Successfully", ButtonType.OK).show();
             clearFields();
             setProgramID();
             loadProgramsToTable();
-        } else{
-            new Alert(Alert.AlertType.ERROR,"Duplicate Student ID...", ButtonType.OK).show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Duplicate Student ID...", ButtonType.OK).show();
         }
     }
 
@@ -145,7 +173,6 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
                     txtDuration.getText(),
                     Double.valueOf(txtFee.getText())
             );
-            System.out.println(programDTO);
 
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -188,11 +215,7 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
 
             if (result.orElse(no) == yes) {
                 if (programBO.deleteProgram(programDTO)) {
-
-                    /*clearFields();
-                    setProgramID();
-                    loadProgramsToTable();*/
-
+                    
                     tmProgramList.remove(rowSelected);
                     tblProgram.setItems(FXCollections.observableArrayList(tmProgramList));
                     tblProgram.refresh();
@@ -213,5 +236,10 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
         txtProgram.clear();
         txtDuration.clear();
         txtFee.clear();
+
+        for (TextField field: map.keySet()) {
+            field.getParent().setStyle("-fx-border-color: black");
+            ((AnchorPane) field.getParent()).getChildren().get(1).setStyle("-fx-text-fill: black");
+        }
     }
 }

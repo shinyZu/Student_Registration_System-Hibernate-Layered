@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Program {
     @Id
     private String programId;

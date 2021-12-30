@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Registration {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

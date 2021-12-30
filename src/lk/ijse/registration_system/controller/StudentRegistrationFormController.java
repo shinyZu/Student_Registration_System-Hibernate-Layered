@@ -27,10 +27,9 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class StudentRegistrationFormController extends DateTimeUtil {
-
-    private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactoryInstance().getBO(BOFactory.BOTypes.STUDENT);
-    private final ArrayList<String> programList = new ArrayList<>();
     public AnchorPane contextRegistry;
+    private URL resource;
+
     public ComboBox<String> cmbStudentId;
     public TextField txtStudentName;
     public TextField txtAddress;
@@ -45,7 +44,9 @@ public class StudentRegistrationFormController extends DateTimeUtil {
     public TextField txtProgramFee;
     public ListView<String> listRegisteredPrograms;
     public TextField txtUpfrontFee;
-    private URL resource;
+
+    private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactoryInstance().getBO(BOFactory.BOTypes.STUDENT);
+    private final ArrayList<String> programList = new ArrayList<>();
 
     public void initialize() {
         loadDateAndTime();
@@ -63,13 +64,13 @@ public class StudentRegistrationFormController extends DateTimeUtil {
     }
 
     LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
-    Pattern idPattern = Pattern.compile("^[S][0-9]{3}$"); // S001, S002
+    //Pattern idPattern = Pattern.compile("^[S][0-9]{3}$"); // S001, S002
     Pattern namePattern = Pattern.compile("^[A-Z][a-z/ ]{3,}[A-Z][a-z]{3,}|[A-Z][a-z]{3,}$");
     Pattern addressPattern = Pattern.compile("^[A-Z][a-z]{3,}[\\s]?[0-9]*$"); // Galle, Colombo 7
     Pattern agePattern = Pattern.compile("^[0-9]{1,2}$"); //1, 22
     Pattern emailPattern = Pattern.compile("^[A-z|0-9]{2,}@(gmail)(.com|.lk)$"); //kamal@gmail.com, amal123@gmail.lk
     Pattern contactPattern = Pattern.compile("^[0-9]{10}$"); //0712345689
-    Pattern upfrontFeePattern = Pattern.compile("^[0-9]{3,}$"); //15000
+    Pattern upfrontFeePattern = Pattern.compile("^[0-9]{3,}(.0)|[0-9]{3,}$"); //15000
 
     private void mapValidations() {
         map.put(txtStudentName, namePattern);
@@ -80,7 +81,6 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         map.put(txtUpfrontFee, upfrontFeePattern);
     }
 
-
     public void validateFieldOnKeyRelease(KeyEvent keyEvent) {
         Object response = ValidationUtil.validate(map,btnRegister);
 
@@ -89,7 +89,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                 TextField errorText = (TextField) response;
                 errorText.requestFocus();
             } else if (response instanceof Boolean) {
-                new Alert(Alert.AlertType.INFORMATION, "Aded").showAndWait();
+                //
             }
         }
     }
@@ -135,35 +135,13 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         txtUpfrontFee.clear();
 
         ArrayList<CustomDTO> dtoList = studentBO.getRegisteredPrograms(cmbStudentId.getValue());
-        System.out.println("dtoList: " + dtoList);
 
         for (CustomDTO dto : dtoList) {
-            //programList.add(dto.getProgramName());
             listRegisteredPrograms.getItems().add(dto.getProgramName());
         }
-        //System.out.println("programList: "+programList);
-        //listRegisteredPrograms.setItems(FXCollections.observableArrayList(programList));
-
     }
 
-    public void registerStudentOnAction(ActionEvent actionEvent) throws ParseException {
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
-
-        // System.out.println("date1: "+datePicker.getEditor().getText());
-        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        //String date = formatter.format(datePicker.getEditor().getText());
-
-        //String strDate = datePicker.getEditor().getText();
-      /*  LocalDate value = datePicker.getValue();
-        System.out.println("localeDtae value: "+value);*/
-
-        //String strDate = "2021-12-14 00:00:00";
-        /*String strDate = String.valueOf(value);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        java.util.Date date = sdf.parse(strDate);
-        java.sql.Date sqlDate = new Date(date.getTime());
-        System.out.println("sqlDate: "+sqlDate);*/
-
+    public void registerStudentOnAction(ActionEvent actionEvent){
         ArrayList<TextField> fields = new ArrayList();
         fields.add(txtStudentName);
         fields.add(txtAddress);
@@ -180,17 +158,10 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         }
 
         StudentDTO studentDTO = new StudentDTO(
-                //txtStudentId.getText(),
                 cmbStudentId.getValue(),
                 txtStudentName.getText(),
                 txtAddress.getText(),
                 java.sql.Date.valueOf(datePicker.getValue()),
-                //java.sql.Date.valueOf(txtDOB.getText()),
-                //java.sql.Date.valueOf(datePicker.getEditor().getText()),
-                //formatter.parse(datePicker.getEditor().getText()),
-                //java.sql.Date.valueOf(formatter.format(datePicker.getValue())),
-                //java.sql.Date.valueOf(formatter.format(datePicker.getEditor().getText())),
-
                 Integer.parseInt(txtAge.getText()),
                 txtEmail.getText(),
                 txtContactNo.getText()
@@ -198,19 +169,11 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         System.out.println("studentDTO: " + studentDTO);
 
         RegistrationDTO registrationDTO = new RegistrationDTO(
-                //LocalDate.now(),
                 java.sql.Date.valueOf(LocalDate.now()),
-                //java.sql.Date.valueOf(lblDate.getText()),
-                /*String.valueOf(LocalDate.now()),*/
                 Double.parseDouble(txtUpfrontFee.getText()),
-                /*new StudentDTO(txtStudentId.getText()),
-                new ProgramDTO(studentBO.getProgramID(cmbProgram.getValue()))*/
-                //txtStudentId.getText(),
                 cmbStudentId.getValue(),
                 studentBO.getProgramID(cmbProgram.getValue())
         );
-
-        System.out.println("registrationDTO: " + registrationDTO);
 
         ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -228,29 +191,22 @@ public class StudentRegistrationFormController extends DateTimeUtil {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.orElse(no) == yes) {
-                System.out.println(1);
                 if (studentBO.studentExists(cmbStudentId.getValue())) { // if the Student is already registered
-                    System.out.println(2);
                     if (studentBO.registerStudent(registrationDTO)) {
-                        System.out.println(3);
                         clearFields();
-                        new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.1", ButtonType.OK).show();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.", ButtonType.OK).show();
 
                     } else {
-                        System.out.println(4);
                         new Alert(Alert.AlertType.WARNING, "Something went wrong. \nTry Again...", ButtonType.OK).show();
                     }
 
                 } else { // if the Student is a new student
-                    System.out.println(5);
                     if (studentBO.registerStudent(studentDTO, registrationDTO)) {
                         loadStudentIDs();
                         clearFields();
-                        System.out.println(6);
-                        new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.2", ButtonType.OK).show();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.", ButtonType.OK).show();
 
                     } else {
-                        System.out.println(7);
                         new Alert(Alert.AlertType.WARNING, "Something went wrong. \nTry Again...", ButtonType.OK).show();
                     }
                 }
@@ -282,6 +238,4 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         clearFields();
         cmbStudentId.setValue(studentBO.generateStudentID());
     }
-
-
 }

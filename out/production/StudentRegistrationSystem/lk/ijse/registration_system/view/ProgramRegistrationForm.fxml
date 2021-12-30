@@ -38,19 +38,19 @@
       </AnchorPane>
       <AnchorPane layoutX="296.0" layoutY="155.0" prefHeight="42.0" prefWidth="257.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtProgram" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="235.0" promptText="Computer Hardware" styleClass="textField" />
+            <TextField fx:id="txtProgram" layoutX="13.0" layoutY="8.0" onKeyReleased="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="235.0" promptText="Computer Hardware" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Program" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="574.0" layoutY="155.0" prefHeight="42.0" prefWidth="158.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtDuration" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="133.0" promptText="6 months" styleClass="textField" />
+            <TextField fx:id="txtDuration" layoutX="13.0" layoutY="8.0" onKeyReleased="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="133.0" promptText="6 months" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Duration" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="755.0" layoutY="155.0" prefHeight="42.0" prefWidth="171.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtFee" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="50,000.00" styleClass="textField" />
+            <TextField fx:id="txtFee" layoutX="13.0" layoutY="8.0" onKeyReleased="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="145.0" promptText="50,000.00" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Fee (LKR)" />
          </children>
       </AnchorPane>

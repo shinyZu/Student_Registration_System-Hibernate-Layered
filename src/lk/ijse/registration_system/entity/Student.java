@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Student {
     @Id
     private String studentId;
