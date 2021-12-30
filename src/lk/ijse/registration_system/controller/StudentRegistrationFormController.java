@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.registration_system.business.BOFactory;
 import lk.ijse.registration_system.business.custom.StudentBO;
@@ -12,6 +14,7 @@ import lk.ijse.registration_system.dto.RegistrationDTO;
 import lk.ijse.registration_system.dto.StudentDTO;
 import lk.ijse.registration_system.util.DateTimeUtil;
 import lk.ijse.registration_system.util.NavigationUtil;
+import lk.ijse.registration_system.util.ValidationUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +22,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class StudentRegistrationFormController extends DateTimeUtil {
 
@@ -53,6 +58,40 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                 loadTxtFee(newValue);
             }
         });
+
+        mapValidations();
+    }
+
+    LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+    Pattern idPattern = Pattern.compile("^[S][0-9]{3}$"); // S001, S002
+    Pattern namePattern = Pattern.compile("^[A-Z][a-z/ ]{3,}[A-Z][a-z]{3,}|[A-Z][a-z]{3,}$");
+    Pattern addressPattern = Pattern.compile("^[A-Z][a-z]{3,}[\\s]?[0-9]*$"); // Galle, Colombo 7
+    Pattern agePattern = Pattern.compile("^[0-9]{1,2}$"); //1, 22
+    Pattern emailPattern = Pattern.compile("^[A-z|0-9]{2,}@(gmail)(.com|.lk)$"); //kamal@gmail.com, amal123@gmail.lk
+    Pattern contactPattern = Pattern.compile("^[0-9]{10}$"); //0712345689
+    Pattern upfrontFeePattern = Pattern.compile("^[0-9]{3,}$"); //15000
+
+    private void mapValidations() {
+        map.put(txtStudentName, namePattern);
+        map.put(txtAddress, addressPattern);
+        map.put(txtAge, agePattern);
+        map.put(txtEmail, emailPattern);
+        map.put(txtContactNo, contactPattern);
+        map.put(txtUpfrontFee, upfrontFeePattern);
+    }
+
+
+    public void validateFieldOnKeyRelease(KeyEvent keyEvent) {
+        Object response = ValidationUtil.validate(map,btnRegister);
+
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (response instanceof TextField) {
+                TextField errorText = (TextField) response;
+                errorText.requestFocus();
+            } else if (response instanceof Boolean) {
+                new Alert(Alert.AlertType.INFORMATION, "Aded").showAndWait();
+            }
+        }
     }
 
     private void setStudentID() {
@@ -93,7 +132,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         cmbProgram.setPromptText("Training Program");
         txtProgramFee.setText("0.0");
         txtUpfrontFee.setPromptText("0.0");
-        //txtUpfrontFee.setText("0.0");
+        txtUpfrontFee.clear();
 
         ArrayList<CustomDTO> dtoList = studentBO.getRegisteredPrograms(cmbStudentId.getValue());
         System.out.println("dtoList: " + dtoList);
@@ -229,13 +268,20 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         cmbProgram.getSelectionModel().clearSelection();
         cmbProgram.setPromptText("Training Program");
         txtProgramFee.setText("0.0");
-        //txtUpfrontFee.setText("0.0");
+        txtUpfrontFee.clear();
         txtUpfrontFee.setPromptText("0.0");
         listRegisteredPrograms.getItems().clear();
+
+        for (TextField field: map.keySet()) {
+            field.getParent().setStyle("-fx-border-color: black");
+            ((AnchorPane) field.getParent()).getChildren().get(1).setStyle("-fx-text-fill: black");
+        }
     }
 
     public void clearFieldsOnAction(ActionEvent actionEvent) {
         clearFields();
         cmbStudentId.setValue(studentBO.generateStudentID());
     }
+
+
 }

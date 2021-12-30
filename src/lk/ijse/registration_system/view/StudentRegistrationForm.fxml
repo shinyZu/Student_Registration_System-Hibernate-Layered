@@ -36,13 +36,13 @@
       </AnchorPane>
       <AnchorPane layoutX="105.0" layoutY="206.0" prefHeight="42.0" prefWidth="395.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtStudentName" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="370.0" promptText="Kamal Perera" styleClass="textField" />
+            <TextField fx:id="txtStudentName" layoutX="13.0" layoutY="8.0" onKeyReleased="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="370.0" promptText="Kamal Perera" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student Full Name" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="105.0" layoutY="275.0" prefHeight="42.0" prefWidth="395.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtAddress" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="370.0" promptText="Galle" styleClass="textField" />
+            <TextField fx:id="txtAddress" layoutX="13.0" layoutY="8.0" onKeyPressed="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="370.0" promptText="Galle" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student Address" />
          </children>
       </AnchorPane>
@@ -57,19 +57,19 @@
       </AnchorPane>
       <AnchorPane layoutX="325.0" layoutY="342.0" prefHeight="42.0" prefWidth="175.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtAge" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="22" styleClass="textField" />
+            <TextField fx:id="txtAge" layoutX="13.0" layoutY="8.0" onKeyPressed="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="145.0" promptText="22" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Age" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="106.0" layoutY="405.0" prefHeight="42.0" prefWidth="395.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtEmail" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="370.0" promptText="kamal@gmail.com" styleClass="textField" />
+            <TextField fx:id="txtEmail" layoutX="13.0" layoutY="8.0" onKeyPressed="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="370.0" promptText="kamal@gmail.com" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Email" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="106.0" layoutY="469.0" prefHeight="42.0" prefWidth="197.0" styleClass="textPane">
          <children>
-            <TextField fx:id="txtContactNo" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="0712345678" styleClass="textField" />
+            <TextField fx:id="txtContactNo" layoutX="13.0" layoutY="8.0" onKeyPressed="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="145.0" promptText="0712345678" styleClass="textField" />
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Contact Number" />
          </children>
       </AnchorPane>
@@ -129,7 +129,7 @@
       <AnchorPane layoutX="597.0" layoutY="469.0" prefHeight="42.0" prefWidth="317.0" styleClass="textPane">
          <children>
             <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Upfront Fee(LKR)" />
-            <TextField fx:id="txtUpfrontFee" layoutX="14.0" layoutY="9.0" prefHeight="28.0" prefWidth="293.0" promptText="50,000.00" styleClass="textField" />
+            <TextField fx:id="txtUpfrontFee" layoutX="14.0" layoutY="9.0" onKeyPressed="#validateFieldOnKeyRelease" prefHeight="28.0" prefWidth="293.0" promptText="50,000.00" styleClass="textField" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="105.0" fitWidth="117.0" layoutX="870.0">
