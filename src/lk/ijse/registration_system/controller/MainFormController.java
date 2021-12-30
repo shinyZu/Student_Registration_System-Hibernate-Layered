@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.registration_system.business.BOFactory;
@@ -24,6 +25,15 @@ public class MainFormController {
     public JFXPasswordField fieldPassword;
     public MaterialDesignIconView iconShowPassword;
     public MaterialDesignIconView iconHidePassword;
+    
+    public JFXButton btnSignUp;
+    public Label lblLoginTitle;
+    public Label lblSignUpTitle;
+    public Label lblSignUp;
+    public Label lblLogin;
+    public Label lblNewUser;
+    public Label lblAlreadyRegistered;
+
 
     VerifyUserBO verifyUserBO = (VerifyUserBO) BOFactory.getBOFactoryInstance().getBO(BOFactory.BOTypes.VERIFY_USER);
 
@@ -129,5 +139,45 @@ public class MainFormController {
             new Alert(Alert.AlertType.WARNING, "Password not available...").show();
             return;
         }
+    }
+
+    public void displaySignUpFormOnAction(MouseEvent mouseEvent) {
+        clearFields();
+
+        lblSignUpTitle.setVisible(true);
+        lblLoginTitle.setVisible(false);
+
+        btnSignUp.setVisible(true);
+        btnLogin.setVisible(false);
+
+        lblAlreadyRegistered.setVisible(true);
+        lblNewUser.setVisible(false);
+
+        lblLogin.setVisible(true);
+        lblSignUp.setVisible(false);
+    }
+
+    public void displayLoginFormOnAction(MouseEvent mouseEvent) {
+        clearFields();
+
+        lblLoginTitle.setVisible(true);
+        lblSignUpTitle.setVisible(false);
+
+        btnLogin.setVisible(true);
+        btnSignUp.setVisible(false);
+
+        lblNewUser.setVisible(true);
+        lblAlreadyRegistered.setVisible(false);
+
+        lblSignUp.setVisible(true);
+        lblLogin.setVisible(false);
+
+    }
+
+    private void clearFields() {
+        txtUsername.clear();
+        txtPassword.clear();
+        fieldPassword.clear();
+        fPassword = null;
     }
 }

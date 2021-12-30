@@ -13,8 +13,9 @@ public class LoginDAOImpl implements LoginDAO {
     public boolean isExist(Login login) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        Login result = (Login) session.createQuery("FROM Login l WHERE l.userName = :userName")
+        Login result = (Login) session.createQuery("FROM Login l WHERE l.userName = :userName AND l.password = :password")
                 .setParameter("userName", login.getUserName())
+                .setParameter("password", login.getPassword())
                 .uniqueResult();
         transaction.commit();
         session.close();

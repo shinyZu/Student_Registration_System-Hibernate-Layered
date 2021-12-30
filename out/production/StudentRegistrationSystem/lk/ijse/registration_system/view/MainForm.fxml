@@ -9,9 +9,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="mainPane" fx:id="loginPane" prefHeight="360.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.MainFormController">
+<AnchorPane id="mainPane" fx:id="loginPane" prefHeight="315.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.MainFormController">
    <children>
-      <Label layoutX="141.0" layoutY="31.0" text="LOGIN">
+      <JFXButton id="btnLogin" fx:id="btnSignUp" buttonType="RAISED" layoutX="35.0" layoutY="220.0" onAction="#signUpOnAction" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: #31afb4; -fx-background-radius: 10;" text="Sign Up" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label fx:id="lblLoginTitle" layoutX="141.0" layoutY="31.0" text="LOGIN">
+         <font>
+            <Font name="FreeSerif" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSignUpTitle" layoutX="130.0" layoutY="31.0" text="SIGN UP" visible="false">
          <font>
             <Font name="FreeSerif" size="19.0" />
          </font>
@@ -37,13 +50,23 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton id="btnLogin" fx:id="btnSignUp" buttonType="RAISED" layoutX="34.0" layoutY="279.0" onAction="#signUpOnAction" prefHeight="41.0" prefWidth="274.0" style="-fx-background-color: #31afb4; -fx-background-radius: 10;" text="Sign Up" textFill="WHITE">
+      <Label fx:id="lblNewUser" layoutX="104.0" layoutY="272.0" text="New User?" />
+      <Label fx:id="lblSignUp" layoutX="177.0" layoutY="272.0" onMouseClicked="#displaySignUpFormOnAction" text="Sign Up" textFill="#366af8" underline="true">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </JFXButton>
+      </Label>
+      <Label fx:id="lblAlreadyRegistered" layoutX="75.0" layoutY="272.0" text="Already Registered?" visible="false" />
+      <Label fx:id="lblLogin" layoutX="210.0" layoutY="272.0" onMouseClicked="#displayLoginFormOnAction" prefHeight="16.0" prefWidth="43.0" text="Login" textFill="#366af8" underline="true" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
    </children>
 </AnchorPane>
