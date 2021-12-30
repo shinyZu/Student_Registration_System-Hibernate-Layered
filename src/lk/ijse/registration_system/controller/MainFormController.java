@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.registration_system.business.BOFactory;
 import lk.ijse.registration_system.business.SuperBO;
@@ -60,6 +61,7 @@ public class MainFormController {
         txtPassword.setOnKeyReleased(event -> {
             this.event = event;
             fieldPassword.setText(txtPassword.getText());
+            fPassword=fieldPassword.getText();
             validateFieldOnKeyRelease(event);
             validateHiddenPwdTextField();
         });
@@ -92,6 +94,9 @@ public class MainFormController {
     }
 
     private Object validate() {
+        btnLogin.setDisable(true);
+        btnSignUp.setDisable(true);
+
         for (TextField keyTextField: mapLoginDetails.keySet()) {
             Pattern valuePattern = mapLoginDetails.get(keyTextField);
             if (!valuePattern.matcher(keyTextField.getText()).matches()) {
@@ -103,6 +108,11 @@ public class MainFormController {
             }
             keyTextField.getStylesheets().clear();
             keyTextField.getStylesheets().add(getClass().getResource("../view/assets/styles/validInput.css").toString());
+        }
+        if (btnLogin.isVisible()){
+            btnLogin.setDisable(false);
+        } else{
+            btnSignUp.setDisable(false);
         }
         return true;
     }
@@ -142,7 +152,7 @@ public class MainFormController {
 
         fieldPassword.setVisible(true);
         fieldPassword.setText(txtPassword.getText());
-       validateFieldOnKeyRelease(event);
+        validateFieldOnKeyRelease(event);
         fieldPassword.setLabelFloat(true);
 
         txtPassword.setVisible(false);
@@ -157,6 +167,10 @@ public class MainFormController {
             this.fPassword = fieldPassword.getText();
         }
 
+        System.out.println("fieldPassword: "+fieldPassword.getText());
+        System.out.println("txtPassword: "+txtPassword.getText());
+        System.out.println("fPassword: "+fPassword);
+
         LoginDTO loginDTO = new LoginDTO(
                 txtUsername.getText(),
                 fPassword
@@ -170,7 +184,7 @@ public class MainFormController {
 
 
         } else {
-            new Alert(Alert.AlertType.WARNING, "Invalid UserName or Password...").show();
+            new Alert(Alert.AlertType.WARNING, "Invalid Username or Password...").show();
             return;
         }
     }
@@ -181,6 +195,10 @@ public class MainFormController {
         } else if (txtPassword.getText().equals("")) {
             this.fPassword = fieldPassword.getText();
         }
+
+        System.out.println("fieldPassword: "+fieldPassword.getText());
+        System.out.println("txtPassword: "+txtPassword.getText());
+        System.out.println("fPassword: "+fPassword);
 
         LoginDTO loginDTO = new LoginDTO(
                 txtUsername.getText(),
@@ -193,7 +211,7 @@ public class MainFormController {
         }
 
         if (txtUsername.getText().isEmpty() || fPassword == null) {
-            new Alert(Alert.AlertType.WARNING, "Invalid UserName or Password2...").show();
+            new Alert(Alert.AlertType.WARNING, "Invalid Username or Password...").show();
             return;
         }
 
@@ -227,6 +245,8 @@ public class MainFormController {
 
         lblLogin.setVisible(true);
         lblSignUp.setVisible(false);
+
+        btnSignUp.setDisable(false);
     }
 
     public void displayLoginFormOnAction(MouseEvent mouseEvent) {
@@ -244,6 +264,8 @@ public class MainFormController {
         lblSignUp.setVisible(true);
         lblLogin.setVisible(false);
 
+        btnLogin.setDisable(false);
+
     }
 
     private void clearFields() {
@@ -251,5 +273,11 @@ public class MainFormController {
         txtPassword.clear();
         fieldPassword.clear();
         fPassword = null;
+
+        for (TextField field: mapLoginDetails.keySet()) {
+            field.getStylesheets().clear();
+        }
+
+        fieldPassword.getStylesheets().clear();
     }
 }

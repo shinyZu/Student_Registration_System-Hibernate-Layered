@@ -52,8 +52,6 @@ public class StudentRecordsFormController extends DateTimeUtil {
         loadDateAndTime();
         initStudentTable();
         initRegistrationTable();
-
-
     }
 
     private void initRegistrationTable() {

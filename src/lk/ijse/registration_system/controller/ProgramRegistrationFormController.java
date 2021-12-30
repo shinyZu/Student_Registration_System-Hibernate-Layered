@@ -215,7 +215,7 @@ public class ProgramRegistrationFormController extends DateTimeUtil {
 
             if (result.orElse(no) == yes) {
                 if (programBO.deleteProgram(programDTO)) {
-                    
+
                     tmProgramList.remove(rowSelected);
                     tblProgram.setItems(FXCollections.observableArrayList(tmProgramList));
                     tblProgram.refresh();
