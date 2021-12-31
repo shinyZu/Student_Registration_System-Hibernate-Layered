@@ -47,6 +47,7 @@ public class StudentBOImpl implements StudentBO {
         return studentDAO.studentExists(new Student(studentID));
     }
 
+    // if the Student is already registered
     @Override
     public boolean registerStudent(RegistrationDTO dto) {
         System.out.println("RegistrationDTO: "+dto);
@@ -58,6 +59,7 @@ public class StudentBOImpl implements StudentBO {
         ));
     }
 
+    // if the Student is a new student
     @Override
     public boolean registerStudent(StudentDTO studDTO, RegistrationDTO regDTO) {
         System.out.println("StudentDTO: "+studDTO+", "+"RegistrationDTO: "+regDTO);
@@ -80,6 +82,7 @@ public class StudentBOImpl implements StudentBO {
 
         if (studentDAO.add(student)) {
             if (registrationDAO.add(registration)){
+            /*if (registrationDAO.add(student)){*/
                 return true;
             }
         }
@@ -94,6 +97,14 @@ public class StudentBOImpl implements StudentBO {
     @Override
     public StudentDTO getStudentDetails(String studentId) {
         Student student = studentDAO.getStudent(studentId);
+        System.out.println("student: "+student);
+
+        /**If in Lazy fetching mode in Student entity
+         *
+         * it will execute the query to fetch only the student details(only parent entity data) NOT registration details(no join query is executed)
+         * hence will need to execute a separate query to fetch registration details
+         * will fetch only parent entity data
+         * */
         return new StudentDTO(
                 student.getStudentId(),
                 student.getStudentName(),
@@ -103,6 +114,23 @@ public class StudentBOImpl implements StudentBO {
                 student.getEmail(),
                 student.getContactNo()
         );
+
+        /** If Eager fetching is enabled in Student entity
+         *
+         * it will execute only one query to fetch all student details including the registration details(will execute a join query which will fetch all data)
+         * no need to explicitly execute a query to get registration details
+         * will fetch both parent entity and child entity data in one single query
+         * */
+        /*return new StudentDTO(
+                student.getStudentId(),
+                student.getStudentName(),
+                student.getAddress(),
+                student.getDob(),
+                student.getAge(),
+                student.getEmail(),
+                student.getContactNo(),
+                student.getRegDetails()
+        );*/
     }
 
     @Override

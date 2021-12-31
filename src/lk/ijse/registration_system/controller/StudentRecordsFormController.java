@@ -83,7 +83,7 @@ public class StudentRecordsFormController extends DateTimeUtil {
         tblRegistration.getItems().clear();
         tmRegistrationList.clear();
 
-        System.out.println(allRegistrations);
+        //System.out.println(allRegistrations);
 
         for (CustomDTO dto : allRegistrations) {
             tmRegistrationList.add(new RegistrationTM(

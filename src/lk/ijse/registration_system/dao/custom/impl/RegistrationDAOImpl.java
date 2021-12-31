@@ -2,6 +2,7 @@ package lk.ijse.registration_system.dao.custom.impl;
 
 import lk.ijse.registration_system.dao.custom.RegistrationDAO;
 import lk.ijse.registration_system.entity.Registration;
+import lk.ijse.registration_system.entity.Student;
 import lk.ijse.registration_system.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,4 +18,14 @@ public class RegistrationDAOImpl implements RegistrationDAO {
         session.close();
         return true;
     }
+
+    /*@Override
+    public boolean add(Student student) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(session.load(Student.class,student.getStudentId()));
+        transaction.commit();
+        session.close();
+        return true;
+    }*/
 }

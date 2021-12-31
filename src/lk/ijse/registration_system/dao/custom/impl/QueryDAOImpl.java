@@ -43,6 +43,7 @@ public class QueryDAOImpl implements QueryDAO {
         ArrayList<CustomDTO> registrationList = new ArrayList<>();
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+        System.out.println();
         List<Object[]> resultList = session.createQuery("SELECT s.studentId, p.programId, p.programName, p.duration, p.fee, r.dateOfReg, r.upfrontFee\n" +
                 "FROM Program p INNER JOIN Registration r\n" +
                 "ON p.programId = r.program\n"+

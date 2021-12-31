@@ -85,9 +85,13 @@ public class StudentDAOImpl implements StudentDAO {
     public ArrayList<Student> getAll() {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+        System.out.println("before getAll");
         ArrayList<Student> studentList = (ArrayList<Student>) session.createQuery("FROM Student ").list();
+        System.out.println("after getAll");
         transaction.commit();
         session.close();
+        System.out.println("studentList in getAll: "+studentList);
+//        System.out.println("index8: "+studentList.get(8).getRegDetails());
         return studentList;
     }
 }

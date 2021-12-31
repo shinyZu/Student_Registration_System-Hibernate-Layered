@@ -17,7 +17,7 @@ public class Program {
     private String duration;
     private double fee;
 
-    @OneToMany(mappedBy = "program", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
     private List<Registration> regDetails = new ArrayList<>();
 
     public Program() {}

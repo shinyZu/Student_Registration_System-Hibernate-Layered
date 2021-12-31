@@ -3,10 +3,7 @@ package lk.ijse.registration_system.entity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +21,7 @@ public class Student {
     private String email;
     private String contactNo;
 
-    @OneToMany (mappedBy = "student")
+    @OneToMany (mappedBy = "student"/*, fetch = FetchType.EAGER*/)
     private List<Registration> regDetails = new ArrayList<>();
 
     public Student() {}
@@ -130,4 +127,18 @@ public class Student {
                 ", contactNo='" + contactNo + '\'' +
                 '}';
     }
+
+    /*@Override
+    public String toString() {
+        return "Student{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", address='" + address + '\'' +
+                ", dob=" + dob +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                ", regDetails=" + regDetails +
+                '}';
+    }*/
 }

@@ -167,9 +167,9 @@ public class MainFormController {
             this.fPassword = fieldPassword.getText();
         }
 
-        System.out.println("fieldPassword: "+fieldPassword.getText());
+        /*System.out.println("fieldPassword: "+fieldPassword.getText());
         System.out.println("txtPassword: "+txtPassword.getText());
-        System.out.println("fPassword: "+fPassword);
+        System.out.println("fPassword: "+fPassword);*/
 
         LoginDTO loginDTO = new LoginDTO(
                 txtUsername.getText(),
@@ -196,9 +196,9 @@ public class MainFormController {
             this.fPassword = fieldPassword.getText();
         }
 
-        System.out.println("fieldPassword: "+fieldPassword.getText());
+        /*System.out.println("fieldPassword: "+fieldPassword.getText());
         System.out.println("txtPassword: "+txtPassword.getText());
-        System.out.println("fPassword: "+fPassword);
+        System.out.println("fPassword: "+fPassword);*/
 
         LoginDTO loginDTO = new LoginDTO(
                 txtUsername.getText(),

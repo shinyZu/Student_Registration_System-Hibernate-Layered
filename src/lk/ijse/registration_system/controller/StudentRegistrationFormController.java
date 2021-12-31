@@ -12,6 +12,7 @@ import lk.ijse.registration_system.business.custom.StudentBO;
 import lk.ijse.registration_system.dto.CustomDTO;
 import lk.ijse.registration_system.dto.RegistrationDTO;
 import lk.ijse.registration_system.dto.StudentDTO;
+import lk.ijse.registration_system.entity.Registration;
 import lk.ijse.registration_system.util.DateTimeUtil;
 import lk.ijse.registration_system.util.NavigationUtil;
 import lk.ijse.registration_system.util.ValidationUtil;
@@ -134,11 +135,31 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         txtUpfrontFee.setPromptText("0.0");
         txtUpfrontFee.clear();
 
+        /**
+         * If fetch type = Lazy in Student Entity
+         * will have to explicitly request for registration details(child entity details)
+         **/
+
         ArrayList<CustomDTO> dtoList = studentBO.getRegisteredPrograms(cmbStudentId.getValue());
 
         for (CustomDTO dto : dtoList) {
             listRegisteredPrograms.getItems().add(dto.getProgramName());
         }
+
+        /**
+         * If fetch type = Eager in Student Entity
+         *
+         * if te below code is executed while being on Lazy fetching mode
+         * it will not bring any registration details(registered programs)
+         * bcz in lazy fetching mode only parent data is fetched
+         * */
+
+        //System.out.println("studentDTO when searched: "+studentDTO);
+        //System.out.println("getRegDetails when searched: "+studentDTO.getRegDetails());
+
+        /*for (Registration reg : studentDTO.getRegDetails()) {
+            listRegisteredPrograms.getItems().add(reg.getProgram().getProgramName());
+        }*/
     }
 
     public void registerStudentOnAction(ActionEvent actionEvent){
@@ -157,11 +178,17 @@ public class StudentRegistrationFormController extends DateTimeUtil {
             }
         }
 
+        System.out.println("getValue: "+datePicker.getValue());
+        System.out.println("getEditor: "+datePicker.getEditor().getText());
+        System.out.println(java.sql.Date.valueOf(datePicker.getEditor().getText()));
+        System.out.println(java.sql.Date.valueOf(datePicker.getValue()));
+
         StudentDTO studentDTO = new StudentDTO(
                 cmbStudentId.getValue(),
                 txtStudentName.getText(),
                 txtAddress.getText(),
-                java.sql.Date.valueOf(datePicker.getValue()),
+                java.sql.Date.valueOf(datePicker.getEditor().getText()),
+                //java.sql.Date.valueOf(datePicker.getValue()),
                 Integer.parseInt(txtAge.getText()),
                 txtEmail.getText(),
                 txtContactNo.getText()
@@ -194,6 +221,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                 if (studentBO.studentExists(cmbStudentId.getValue())) { // if the Student is already registered
                     if (studentBO.registerStudent(registrationDTO)) {
                         clearFields();
+                        cmbStudentId.setValue(studentBO.generateStudentID());
                         new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.", ButtonType.OK).show();
 
                     } else {
@@ -204,6 +232,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                     if (studentBO.registerStudent(studentDTO, registrationDTO)) {
                         loadStudentIDs();
                         clearFields();
+                        cmbStudentId.setValue(studentBO.generateStudentID());
                         new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.", ButtonType.OK).show();
 
                     } else {

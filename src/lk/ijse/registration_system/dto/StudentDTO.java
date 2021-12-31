@@ -1,6 +1,10 @@
 package lk.ijse.registration_system.dto;
 
+import lk.ijse.registration_system.entity.Registration;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class StudentDTO {
     private String studentId;
@@ -10,6 +14,8 @@ public class StudentDTO {
     private int age;
     private String email;
     private String contactNo;
+
+    private List<Registration> regDetails = new ArrayList<>();
 
     public StudentDTO() {}
 
@@ -25,6 +31,17 @@ public class StudentDTO {
         this.setAge(age);
         this.setEmail(email);
         this.setContactNo(contactNo);
+    }
+
+    public StudentDTO(String studentId, String studentName, String address, Date dob, int age, String email, String contactNo, List<Registration> regDetails) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.address = address;
+        this.dob = dob;
+        this.age = age;
+        this.email = email;
+        this.contactNo = contactNo;
+        this.regDetails = regDetails;
     }
 
     public String getStudentId() {
@@ -83,6 +100,27 @@ public class StudentDTO {
         this.contactNo = contactNo;
     }
 
+    public List<Registration> getRegDetails() {
+        return regDetails;
+    }
+
+    public void setRegDetails(List<Registration> regDetails) {
+        this.regDetails = regDetails;
+    }
+
+    /*@Override
+    public String toString() {
+        return "StudentDTO{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", address='" + address + '\'' +
+                ", dob=" + dob +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                '}';
+    }*/
+
     @Override
     public String toString() {
         return "StudentDTO{" +
@@ -93,6 +131,7 @@ public class StudentDTO {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", contactNo='" + contactNo + '\'' +
+                ", regDetails=" + regDetails +
                 '}';
     }
 }
