@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -71,5 +72,10 @@
             <Image url="@assets/images/logo.png" />
          </image>
       </ImageView>
+      <MaterialDesignIconView glyphName="POWER" layoutX="14.0" layoutY="44.0" onMouseClicked="#logoutOnAction" pickOnBounds="true" size="25">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MaterialDesignIconView>
    </children>
 </AnchorPane>

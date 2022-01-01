@@ -1,6 +1,7 @@
 package lk.ijse.registration_system.controller;
 
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.registration_system.util.NavigationUtil;
 
@@ -23,6 +24,11 @@ public class DashboardFormController {
 
     public void loadStudentRecordsOnAction(ActionEvent actionEvent) throws IOException {
         resource = getClass().getResource("../view/StudentRecordsForm.fxml");
+        NavigationUtil.navigateToPage(resource, contextDashboard);
+    }
+
+    public void logoutOnAction(MouseEvent mouseEvent) throws IOException {
+        resource = getClass().getResource("../view/MainForm.fxml");
         NavigationUtil.navigateToPage(resource, contextDashboard);
     }
 }
