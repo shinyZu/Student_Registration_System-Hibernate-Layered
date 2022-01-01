@@ -10,4 +10,6 @@ public interface QueryDAO extends SuperDAO {
     ArrayList<CustomDTO> getRegisteredPrograms(String studentId);
 
     ArrayList<CustomDTO> getRegistrationDetails();
+
+    ArrayList<CustomDTO> search(String text);
 }

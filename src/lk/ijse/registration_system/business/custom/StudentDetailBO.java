@@ -10,4 +10,8 @@ public interface StudentDetailBO extends SuperBO {
     ArrayList<StudentDTO> getAllStudents();
 
     ArrayList<CustomDTO> getAllRegistrations();
+
+    ArrayList<StudentDTO> searchStudent(String text);
+
+    ArrayList<CustomDTO> searchRegistration(String text);
 }

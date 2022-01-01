@@ -9,6 +9,8 @@ public interface StudentDAO extends SuperDAO {
 
     boolean add(Student student);
 
+    boolean update(Student student);
+
     boolean studentExists(Student student);
 
     ArrayList<String> getStudentIDs();
@@ -18,4 +20,6 @@ public interface StudentDAO extends SuperDAO {
     Student getStudent(String studentId);
 
     ArrayList<Student> getAll();
+
+    ArrayList<Student> search(String text);
 }

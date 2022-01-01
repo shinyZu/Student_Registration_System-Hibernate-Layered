@@ -28,4 +28,6 @@ public interface StudentBO extends SuperBO {
     StudentDTO getStudentDetails(String studentId);
 
     ArrayList<CustomDTO> getRegisteredPrograms(String studentId);
+
+    boolean updateStudent(StudentDTO studentDTO);
 }

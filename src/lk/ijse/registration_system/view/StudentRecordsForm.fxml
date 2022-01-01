@@ -7,22 +7,23 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="contextStudentDetail" prefHeight="600.0" prefWidth="1000.0" stylesheets="@assets/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.StudentRecordsFormController">
+<AnchorPane id="mainPane" fx:id="contextStudentDetail" prefHeight="600.0" prefWidth="1000.0" stylesheets="@assets/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.StudentRecordsFormController">
    <children>
-      <Label fx:id="lblDate" layoutX="474.0" layoutY="28.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
-      <Label fx:id="lblDay" layoutX="399.0" layoutY="28.0" prefHeight="16.0" prefWidth="59.0" text="Saturday" />
-      <Label fx:id="lblTime" layoutX="574.0" layoutY="28.0" text="15:16:58" />
+      <Label fx:id="lblDate" layoutX="470.0" layoutY="28.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
+      <Label fx:id="lblDay" alignment="CENTER_RIGHT" layoutX="376.0" layoutY="28.0" prefHeight="16.0" prefWidth="87.0" text="Saturday" />
+      <Label fx:id="lblTime" layoutX="571.0" layoutY="28.0" text="15:16:58" />
       <Label layoutX="389.0" layoutY="73.0" text="Student Records">
          <font>
             <Font name="Serif Regular" size="30.0" />
          </font>
       </Label>
-      <Separator layoutX="302.0" layoutY="122.0" prefHeight="0.0" prefWidth="427.0" />
+      <Separator layoutX="302.0" layoutY="109.0" prefHeight="0.0" prefWidth="427.0" />
       <ImageView fitHeight="105.0" fitWidth="117.0" layoutX="864.0" layoutY="19.0">
          <image>
             <Image url="@assets/images/logo.png" />
@@ -39,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <TableView fx:id="tblStudent" layoutX="89.0" layoutY="158.0" prefHeight="181.0" prefWidth="853.0">
+      <TableView id="table1" fx:id="tblStudent" layoutX="89.0" layoutY="169.0" prefHeight="199.0" prefWidth="853.0">
          <columns>
             <TableColumn fx:id="colStudentId" prefWidth="118.0" text="Student ID" />
             <TableColumn fx:id="colStudentName" prefWidth="157.0" text="Full Name" />
@@ -53,7 +54,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </TableView>
-      <TableView fx:id="tblRegistration" layoutX="89.0" layoutY="366.0" prefHeight="181.0" prefWidth="853.0">
+      <TableView id="table2" fx:id="tblRegistration" layoutX="89.0" layoutY="385.0" prefHeight="199.0" prefWidth="853.0">
          <columns>
             <TableColumn fx:id="colStudentID" prefWidth="118.0" text="Student ID" />
             <TableColumn fx:id="colProgramId" prefWidth="118.0" text="Program ID" />
@@ -67,5 +68,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </TableView>
+      <AnchorPane layoutX="745.0" layoutY="117.0" prefHeight="42.0" prefWidth="197.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtSearchByProgram" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="Search By Program" styleClass="textField" />
+            <MaterialDesignIconView glyphName="MAGNIFY" layoutX="169.0" layoutY="28.0" size="20" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="89.0" layoutY="117.0" prefHeight="42.0" prefWidth="197.0" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtSearchByStudent" layoutX="13.0" layoutY="8.0" prefHeight="28.0" prefWidth="145.0" promptText="Search By Student" styleClass="textField" />
+            <MaterialDesignIconView glyphName="MAGNIFY" layoutX="169.0" layoutY="28.0" size="20" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

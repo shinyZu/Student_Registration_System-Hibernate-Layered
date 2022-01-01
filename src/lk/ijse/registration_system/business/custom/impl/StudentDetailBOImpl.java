@@ -2,7 +2,6 @@ package lk.ijse.registration_system.business.custom.impl;
 
 import lk.ijse.registration_system.business.custom.StudentDetailBO;
 import lk.ijse.registration_system.dao.DAOFactory;
-import lk.ijse.registration_system.dao.SuperDAO;
 import lk.ijse.registration_system.dao.custom.QueryDAO;
 import lk.ijse.registration_system.dao.custom.StudentDAO;
 import lk.ijse.registration_system.dto.CustomDTO;
@@ -37,6 +36,42 @@ public class StudentDetailBOImpl implements StudentDetailBO {
     @Override
     public ArrayList<CustomDTO> getAllRegistrations() {
        return queryDAO.getRegistrationDetails();
+    }
+
+    @Override
+    public ArrayList<StudentDTO> searchStudent(String text) {
+        ArrayList<StudentDTO> studentList = new ArrayList<>();
+
+        for (Student s : studentDAO.search(text) ) {
+            studentList.add(new StudentDTO(
+                    s.getStudentId(),
+                    s.getStudentName(),
+                    s.getAddress(),
+                    s.getDob(),
+                    s.getAge(),
+                    s.getEmail(),
+                    s.getContactNo()
+            ));
+        }
+        return studentList;
+    }
+
+    @Override
+    public ArrayList<CustomDTO> searchRegistration(String text) {
+        ArrayList<CustomDTO> registrationList = new ArrayList<>();
+
+        for (CustomDTO dto : queryDAO.search(text) ) {
+            registrationList.add(new CustomDTO(
+                    dto.getStudentId(),
+                    dto.getProgramId(),
+                    dto.getProgramName(),
+                    dto.getDuration(),
+                    dto.getProgramFee(),
+                    dto.getDateOfRegistry(),
+                    dto.getUpfrontFee()
+            ));
+        }
+        return registrationList;
     }
 
 }

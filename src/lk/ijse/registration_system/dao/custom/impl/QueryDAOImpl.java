@@ -2,6 +2,7 @@ package lk.ijse.registration_system.dao.custom.impl;
 
 import lk.ijse.registration_system.dao.custom.QueryDAO;
 import lk.ijse.registration_system.dto.CustomDTO;
+import lk.ijse.registration_system.entity.Student;
 import lk.ijse.registration_system.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -67,6 +68,35 @@ public class QueryDAOImpl implements QueryDAO {
             ));
         }
         System.out.println("registrationList: "+registrationList);
+        return registrationList;
+    }
+
+    @Override
+    public ArrayList<CustomDTO> search(String text) {
+        ArrayList<CustomDTO> registrationList = new ArrayList<>();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Object[]> list =session.createQuery("SELECT s.studentId, p.programId, p.programName, p.duration, p.fee, r.dateOfReg, r.upfrontFee \n" +
+                "FROM Program p INNER JOIN Registration r\n" +
+                "ON p.programId = r.program \n" +
+                "INNER JOIN Student s \n" +
+                "ON r.student = s.studentId \n" +
+                "WHERE p.programName LIKE '%" + text + "%' OR s.studentId LIKE '%" + text + "%'").list();
+        transaction.commit();
+        session.close();
+
+        for (Object[] obj : list) {
+            registrationList.add(new CustomDTO(
+                    (String) obj[0],
+                    (String) obj[1],
+                    (String) obj[2],
+                    (String) obj[3],
+                    (Double) obj[4],
+                    //formatter.format(obj[5]),
+                    (Date) obj[5],
+                    (Double) obj[6]
+            ));
+        }
         return registrationList;
     }
 }

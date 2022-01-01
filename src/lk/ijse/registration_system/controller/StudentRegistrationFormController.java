@@ -123,6 +123,12 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         StudentDTO studentDTO = studentBO.getStudentDetails(cmbStudentId.getValue());
+
+        if (studentDTO == null){
+            new Alert(Alert.AlertType.WARNING, "No Student available...", ButtonType.OK).show();
+            return;
+        }
+
         txtStudentName.setText(studentDTO.getStudentName());
         txtAddress.setText(studentDTO.getAddress());
         datePicker.getEditor().setText(formatter.format(studentDTO.getDob()));
@@ -178,10 +184,10 @@ public class StudentRegistrationFormController extends DateTimeUtil {
             }
         }
 
-        System.out.println("getValue: "+datePicker.getValue());
+        /*System.out.println("getValue: "+datePicker.getValue());
         System.out.println("getEditor: "+datePicker.getEditor().getText());
         System.out.println(java.sql.Date.valueOf(datePicker.getEditor().getText()));
-        System.out.println(java.sql.Date.valueOf(datePicker.getValue()));
+        System.out.println(java.sql.Date.valueOf(datePicker.getValue()));*/
 
         StudentDTO studentDTO = new StudentDTO(
                 cmbStudentId.getValue(),
@@ -266,5 +272,55 @@ public class StudentRegistrationFormController extends DateTimeUtil {
     public void clearFieldsOnAction(ActionEvent actionEvent) {
         clearFields();
         cmbStudentId.setValue(studentBO.generateStudentID());
+    }
+
+    public void editStudentOnAction(ActionEvent actionEvent) {
+
+        ArrayList<TextField> fields = new ArrayList();
+        fields.add(txtStudentName);
+        fields.add(txtAddress);
+        fields.add(txtAge);
+        fields.add(txtEmail);
+        fields.add(txtContactNo);
+
+        for (TextField field : fields) {
+            System.out.println(field.getText().isEmpty());
+            if (field.getText().isEmpty()) {
+                System.out.println(field.getText());
+                new Alert(Alert.AlertType.WARNING, "Please fill in the required fields...", ButtonType.OK).show();
+                return;
+            }
+        }
+
+
+        StudentDTO studentDTO = new StudentDTO(
+                cmbStudentId.getValue(),
+                txtStudentName.getText(),
+                txtAddress.getText(),
+                java.sql.Date.valueOf(datePicker.getEditor().getText()),
+                //java.sql.Date.valueOf(datePicker.getValue()),
+                Integer.parseInt(txtAge.getText()),
+                txtEmail.getText(),
+                txtContactNo.getText()
+        );
+
+        ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to edit this Student?", yes, no);
+        alert.setTitle("Confirmation Alert");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.orElse(no) == yes) {
+            if ( studentBO.updateStudent(studentDTO)) {
+                clearFields();
+                cmbStudentId.setValue(studentBO.generateStudentID());
+                new Alert(Alert.AlertType.CONFIRMATION, "Student Updated Successfully.", ButtonType.OK).show();
+
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something went wrong. \nTry Again...", ButtonType.OK).show();
+            }
+        }
     }
 }

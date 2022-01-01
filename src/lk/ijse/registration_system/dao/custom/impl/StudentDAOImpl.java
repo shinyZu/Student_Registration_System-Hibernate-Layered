@@ -23,6 +23,16 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
+    public boolean update(Student student) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(student);
+        transaction.commit();
+        session.close();
+        return true;
+    }
+
+    @Override
     public boolean studentExists(Student student) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -94,4 +104,16 @@ public class StudentDAOImpl implements StudentDAO {
 //        System.out.println("index8: "+studentList.get(8).getRegDetails());
         return studentList;
     }
+
+    @Override
+    public ArrayList<Student> search(String text) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        ArrayList<Student> studentList = (ArrayList<Student>) session.createQuery("FROM Student s WHERE s.studentName LIKE '%" + text + "%' OR s.address LIKE '%" + text + "%'").list();
+        transaction.commit();
+        session.close();
+        return studentList;
+    }
+
+
 }

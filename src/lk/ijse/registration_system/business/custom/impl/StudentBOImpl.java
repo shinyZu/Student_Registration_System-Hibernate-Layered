@@ -105,15 +105,19 @@ public class StudentBOImpl implements StudentBO {
          * hence will need to execute a separate query to fetch registration details
          * will fetch only parent entity data
          * */
-        return new StudentDTO(
-                student.getStudentId(),
-                student.getStudentName(),
-                student.getAddress(),
-                student.getDob(),
-                student.getAge(),
-                student.getEmail(),
-                student.getContactNo()
-        );
+
+        if (student != null) {
+            return new StudentDTO(
+                    student.getStudentId(),
+                    student.getStudentName(),
+                    student.getAddress(),
+                    student.getDob(),
+                    student.getAge(),
+                    student.getEmail(),
+                    student.getContactNo()
+            );
+        }
+        return null;
 
         /** If Eager fetching is enabled in Student entity
          *
@@ -136,5 +140,18 @@ public class StudentBOImpl implements StudentBO {
     @Override
     public ArrayList<CustomDTO> getRegisteredPrograms(String studentId) {
         return queryDAO.getRegisteredPrograms(studentId);
+    }
+
+    @Override
+    public boolean updateStudent(StudentDTO studDTO) {
+        return studentDAO.update(new Student(
+                studDTO.getStudentId(),
+                studDTO.getStudentName(),
+                studDTO.getAddress(),
+                studDTO.getDob(),
+                studDTO.getAge(),
+                studDTO.getEmail(),
+                studDTO.getContactNo()
+        ));
     }
 }

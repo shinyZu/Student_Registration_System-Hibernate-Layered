@@ -40,16 +40,49 @@
 }
 
 /*---------------------------------------------------Table View------------------------------------*/
+/*#table1:hover{
+    !*-fx-max-width: 853px;*!
+    -fx-pref-height: 300px;
+    -fx-border-bottom-width:50px;
+    -fx-border-color: blue;
+    -fx-border-radius: 10px;
+    z-index: 4;
+}
+
+#table1:hover  #pane2{
+    -fx-background-color: #31afb4;
+}*/
+
+/*
+#pane2:hover{
+    -fx-pref-height: 500px;
+    -fx-background-color: #00b894;
+    !*-fx-scale-y: 1.2;*!
+}*/
+
+/*
+ #table2:hover{
+    -fx-pref-height: 250px;
+    !*-fx-scale-y: 2;*!
+    !*-fx-translate-x: 100px;*!
+    -fx-translate-y: -100px;
+    -fx-border-top: 50px;
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+
+}
+*/
 
 .table-view{
     /*-fx-background-color:  #5C8D89;*/
-    -fx-background-color:  #31afb4;
+    -fx-background-color:  #636e72;
     -fx-background-radius: 10;
 }
 
 .table-view .column-header-background{
     /*-fx-background-color:   #5C8D89 ;*/
-    -fx-background-color:   #31afb4 ;
+    /*-fx-background-color:   #31afb4 ;*/
+    -fx-background-color:   #636e72;
     -fx-background-radius: 5;
 }
 
@@ -77,13 +110,15 @@
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #88e3e7;
+    /*-fx-background-color: -fx-table-cell-border-color, #88e3e7;*/
+    -fx-background-color: -fx-table-cell-border-color, #b2bec3;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
 
 .table-view .table-row-cell:selected{
-    -fx-background-color:linear-gradient(to right, rgb(236, 127, 46), rgb(241, 215, 80));
+    /*-fx-background-color:linear-gradient(to right, rgb(236, 127, 46), rgb(241, 215, 80));*/
+    -fx-background-color:linear-gradient(to right,#31afb4, #00b894);
 }
 
 .table-view .table-row-cell:selected{
@@ -97,11 +132,12 @@
 .table-view > .virtual-flow > .scroll-bar:horizontal,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
-    -fx-background-color:   #31afb4 /*transparent*/;
+    /*-fx-background-color:   #31afb4;*/
+    -fx-background-color:   #636e72 /*transparent*/;
 }
 
 .table-view > .virtual-flow > .corner{
-    -fx-background-color:   #31afb4;
+    -fx-background-color:   #636e72;
     -fx-background-insets: 0 10 0 0 ;
 }
 
@@ -113,7 +149,7 @@
 }
 
 .table-view > .column-header-background > .filler {
-    -fx-background-color:  #31afb4;
+    -fx-background-color: #636e72;
     -fx-background-insets: 10,0,0,0;
 }
 
