@@ -15,8 +15,8 @@
 
 <AnchorPane id="mainPane" fx:id="contextProgramRegistry" prefHeight="600.0" prefWidth="1000.0" stylesheets="@assets/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.ProgramRegistrationFormController">
    <children>
-      <Label fx:id="lblDate" layoutX="470.0" layoutY="26.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
-      <Label fx:id="lblDay" layoutX="395.0" layoutY="26.0" prefHeight="16.0" prefWidth="59.0" text="Saturday" />
+      <Label fx:id="lblDate" alignment="CENTER" layoutX="470.0" layoutY="26.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
+      <Label fx:id="lblDay" alignment="CENTER_RIGHT" layoutX="347.0" layoutY="26.0" prefHeight="16.0" prefWidth="117.0" text="Saturday" />
       <Label fx:id="lblTime" layoutX="570.0" layoutY="26.0" text="15:16:58" />
       <Label layoutX="336.0" layoutY="63.0" text="New Training Program">
          <font>

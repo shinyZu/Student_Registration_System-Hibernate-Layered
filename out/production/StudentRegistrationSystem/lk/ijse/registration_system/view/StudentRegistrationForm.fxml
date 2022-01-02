@@ -16,9 +16,9 @@
 
 <AnchorPane fx:id="contextRegistry" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@assets/styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.registration_system.controller.StudentRegistrationFormController">
    <children>
-      <Label fx:id="lblDate" layoutX="468.0" layoutY="16.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
-      <Label fx:id="lblDay" layoutX="393.0" layoutY="16.0" prefHeight="16.0" prefWidth="59.0" text="Saturday" />
-      <Label fx:id="lblTime" layoutX="568.0" layoutY="16.0" text="15:16:58" />
+      <Label fx:id="lblDate" alignment="CENTER" layoutX="468.0" layoutY="16.0" prefHeight="16.0" prefWidth="98.0" text="December 18 " />
+      <Label fx:id="lblDay" alignment="CENTER_RIGHT" layoutX="366.0" layoutY="16.0" prefHeight="16.0" prefWidth="98.0" text="Saturday" />
+      <Label fx:id="lblTime" layoutX="571.0" layoutY="16.0" text="15:16:58" />
       <Label layoutX="383.0" layoutY="58.0" text="New Registration">
          <font>
             <Font name="Serif Regular" size="30.0" />
