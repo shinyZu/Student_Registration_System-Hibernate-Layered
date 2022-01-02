@@ -19,6 +19,7 @@ import lk.ijse.registration_system.util.ValidationUtil;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -155,13 +156,13 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         /**
          * If fetch type = Eager in Student Entity
          *
-         * if te below code is executed while being on Lazy fetching mode
+         * if thee below code is executed while being on Lazy fetching mode
          * it will not bring any registration details(registered programs)
          * bcz in lazy fetching mode only parent data is fetched
          * */
 
-        //System.out.println("studentDTO when searched: "+studentDTO);
-        //System.out.println("getRegDetails when searched: "+studentDTO.getRegDetails());
+        /*System.out.println("studentDTO when searched: "+studentDTO);
+        System.out.println("getRegDetails when searched: "+studentDTO.getRegDetails());*/
 
         /*for (Registration reg : studentDTO.getRegDetails()) {
             listRegisteredPrograms.getItems().add(reg.getProgram().getProgramName());
@@ -184,22 +185,35 @@ public class StudentRegistrationFormController extends DateTimeUtil {
             }
         }
 
-        /*System.out.println("getValue: "+datePicker.getValue());
+        /*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println("getValue: "+datePicker.getValue());
         System.out.println("getEditor: "+datePicker.getEditor().getText());
-        System.out.println(java.sql.Date.valueOf(datePicker.getEditor().getText()));
-        System.out.println(java.sql.Date.valueOf(datePicker.getValue()));*/
+        System.out.println("1: "+java.sql.Date.valueOf(datePicker.getEditor().getText()));
+        System.out.println("2: "+java.sql.Date.valueOf(datePicker.getValue()));
+        System.out.println("format1: "+formatter.format(datePicker.getEditor().getText()));
+        System.out.println("3: "+Date.valueOf(datePicker.getValue()));
+        System.out.println("format3: "+Date.valueOf(formatter.format(datePicker.getValue())));*/
+
+        Date dob;
+        if (studentBO.studentExists(cmbStudentId.getValue())) {
+             dob = java.sql.Date.valueOf(datePicker.getEditor().getText());
+        } else {
+            dob = java.sql.Date.valueOf(datePicker.getValue());
+        }
+
 
         StudentDTO studentDTO = new StudentDTO(
                 cmbStudentId.getValue(),
                 txtStudentName.getText(),
                 txtAddress.getText(),
-                java.sql.Date.valueOf(datePicker.getEditor().getText()),
+               //java.sql.Date.valueOf(formatter.format(datePicker.getEditor().getText())),
                 //java.sql.Date.valueOf(datePicker.getValue()),
+                //java.sql.Date.valueOf(datePicker.getValue()),
+                dob,
                 Integer.parseInt(txtAge.getText()),
                 txtEmail.getText(),
                 txtContactNo.getText()
         );
-        System.out.println("studentDTO: " + studentDTO);
 
         RegistrationDTO registrationDTO = new RegistrationDTO(
                 java.sql.Date.valueOf(LocalDate.now()),
@@ -284,7 +298,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
         fields.add(txtContactNo);
 
         for (TextField field : fields) {
-            System.out.println(field.getText().isEmpty());
+            //System.out.println(field.getText().isEmpty());
             if (field.getText().isEmpty()) {
                 System.out.println(field.getText());
                 new Alert(Alert.AlertType.WARNING, "Please fill in the required fields...", ButtonType.OK).show();

@@ -39,7 +39,7 @@ public class StudentDAOImpl implements StudentDAO {
         Student stud = session.get(Student.class, student.getStudentId());
         transaction.commit();
         session.close();
-        System.out.println("stud: "+stud);
+       // System.out.println("stud: "+stud);
         System.out.println(stud!=null);
         return stud!=null;
     }
@@ -66,7 +66,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         if (studentID != null) {
             int tempId = Integer.parseInt(studentID.split("S")[1]);
-            System.out.println("tempId: "+tempId);
+            //System.out.println("tempId: "+tempId);
             tempId = tempId + 1;
 
             if (tempId <= 9) {
@@ -109,7 +109,7 @@ public class StudentDAOImpl implements StudentDAO {
     public ArrayList<Student> search(String text) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        ArrayList<Student> studentList = (ArrayList<Student>) session.createQuery("FROM Student s WHERE s.studentName LIKE '%" + text + "%' OR s.address LIKE '%" + text + "%'").list();
+        ArrayList<Student> studentList = (ArrayList<Student>) session.createQuery("FROM Student s WHERE s.studentId LIKE '%"+text+"%' OR s.studentName LIKE '%" + text + "%' OR s.address LIKE '%" + text + "%'").list();
         transaction.commit();
         session.close();
         return studentList;

@@ -50,7 +50,7 @@ public class StudentBOImpl implements StudentBO {
     // if the Student is already registered
     @Override
     public boolean registerStudent(RegistrationDTO dto) {
-        System.out.println("RegistrationDTO: "+dto);
+       // System.out.println("RegistrationDTO: "+dto);
         return registrationDAO.add(new Registration(
                 dto.getDateOfReg(),
                 dto.getUpfrontFee(),
@@ -62,7 +62,7 @@ public class StudentBOImpl implements StudentBO {
     // if the Student is a new student
     @Override
     public boolean registerStudent(StudentDTO studDTO, RegistrationDTO regDTO) {
-        System.out.println("StudentDTO: "+studDTO+", "+"RegistrationDTO: "+regDTO);
+        //System.out.println("StudentDTO: "+studDTO+", "+"RegistrationDTO: "+regDTO);
         Student student = new Student(
                 studDTO.getStudentId(),
                 studDTO.getStudentName(),
@@ -125,16 +125,19 @@ public class StudentBOImpl implements StudentBO {
          * no need to explicitly execute a query to get registration details
          * will fetch both parent entity and child entity data in one single query
          * */
-        /*return new StudentDTO(
-                student.getStudentId(),
-                student.getStudentName(),
-                student.getAddress(),
-                student.getDob(),
-                student.getAge(),
-                student.getEmail(),
-                student.getContactNo(),
-                student.getRegDetails()
-        );*/
+       /* if (student != null) {
+            return new StudentDTO(
+                    student.getStudentId(),
+                    student.getStudentName(),
+                    student.getAddress(),
+                    student.getDob(),
+                    student.getAge(),
+                    student.getEmail(),
+                    student.getContactNo(),
+                    student.getRegDetails()
+            );
+        }
+        return null;*/
     }
 
     @Override

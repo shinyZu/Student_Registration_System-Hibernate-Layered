@@ -19,7 +19,7 @@ public class LoginDAOImpl implements LoginDAO {
                 .uniqueResult();
         transaction.commit();
         session.close();
-        System.out.println("login: "+result);
+        //System.out.println("login: "+result);
         return result != null;
     }
 
@@ -40,7 +40,7 @@ public class LoginDAOImpl implements LoginDAO {
         String password = (String) session.createQuery("SELECT l.password FROM Login l WHERE l.password = :password").setParameter("password", login.getPassword()).uniqueResult();
         transaction.commit();
         session.close();
-        System.out.println("password: "+password);
+        //System.out.println("password: "+password);
         return password==null;
     }
 }

@@ -54,7 +54,7 @@ public class ProgramDAOImpl implements ProgramDAO {
 
         if (programID != null) {
             int tempId = Integer.parseInt(programID.split("T")[1]);
-            System.out.println("tempId: "+tempId);
+            //System.out.println("tempId: "+tempId);
             tempId = tempId + 1;
 
             if (tempId <= 9) {
@@ -119,7 +119,7 @@ public class ProgramDAOImpl implements ProgramDAO {
         Program result = session.get(Program.class, program.getProgramId());
         transaction.commit();
         session.close();
-        System.out.println("program: "+result);
+        //System.out.println("program: "+result);
         return result != null;
     }
 }
