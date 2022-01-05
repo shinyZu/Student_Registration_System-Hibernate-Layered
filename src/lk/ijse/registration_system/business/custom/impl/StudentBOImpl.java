@@ -125,7 +125,7 @@ public class StudentBOImpl implements StudentBO {
          * no need to explicitly execute a query to get registration details
          * will fetch both parent entity and child entity data in one single query
          * */
-       /* if (student != null) {
+        /*if (student != null) {
             return new StudentDTO(
                     student.getStudentId(),
                     student.getStudentName(),

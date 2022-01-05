@@ -26,6 +26,16 @@ public class CustomDTO {
         this.setUpfrontFee(upfrontFee);
     }
 
+    public CustomDTO(String studentId, String studentName, String address, Date dob, int age, String email, String contactNo) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.address = address;
+        this.dob = dob;
+        this.age = age;
+        this.email = email;
+        this.contactNo = contactNo;
+    }
+
     public CustomDTO(String studentId, String studentName, String address, Date dob, int age, String email, String contactNo, String programName, double upfrontFee) {
         this.setStudentId(studentId);
         this.setStudentName(studentName);

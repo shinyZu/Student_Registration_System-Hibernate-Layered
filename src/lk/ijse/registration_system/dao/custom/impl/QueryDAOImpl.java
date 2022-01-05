@@ -5,6 +5,7 @@ import lk.ijse.registration_system.dto.CustomDTO;
 import lk.ijse.registration_system.entity.Student;
 import lk.ijse.registration_system.util.FactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.text.SimpleDateFormat;
@@ -99,4 +100,33 @@ public class QueryDAOImpl implements QueryDAO {
         }
         return registrationList;
     }
+
+    public ArrayList<CustomDTO> getStudentsRegisteredInAllPrograms() {
+        ArrayList<CustomDTO> list = new ArrayList<>();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Object[]> resultList = session.createQuery("SELECT s.studentId, s.studentName, s.address, s.dob, s.age, s.email, s.contactNo \n" +
+                "FROM Student s INNER JOIN Registration r \n" +
+                "ON s.studentId = r.student \n" +
+                "INNER JOIN Program p \n" +
+                "ON r.program = p.programId \n" +
+                "GROUP BY s.studentId \n" +
+                "HAVING COUNT(p.programId) = (SELECT COUNT(programId) FROM Program )").list();
+        transaction.commit();
+        session.close();
+
+        for (Object[] obj : resultList) {
+            list.add(new CustomDTO(
+                    (String) obj[0],
+                    (String) obj[1],
+                    (String) obj[2],
+                    (Date) obj[3],
+                    (int) obj[4],
+                    (String) obj[5],
+                    (String) obj[6]
+            ));
+        }
+        return list;
+    }
+
 }

@@ -33,3 +33,12 @@ ON s.studentId = r.studentId
 LEFT OUTER JOIN Program p
 ON r.programId = p.programId
 WHERE s.studentId="S002";
+
+
+SELECT s.studentId, s.studentName,s.address,s.dob,s.age,s.email,s.contactNo, COUNT(p.programId) AS 'No. of Programs '
+FROM Student s INNER JOIN Registration r
+ON s.studentId = r.studentId
+INNER JOIN Program p
+ON r.programId = p.programId
+GROUP BY s.studentId
+HAVING COUNT(p.programId) = (SELECT COUNT(programId) FROM Program);

@@ -28,6 +28,12 @@ public class Registration {
 
     public Registration() {}
 
+    public Registration(Date dateOfReg, double upfrontFee, Program program) {
+        this.dateOfReg = dateOfReg;
+        this.upfrontFee = upfrontFee;
+        this.program = program;
+    }
+
     public Registration(Date dateOfReg, double upfrontFee, Student student, Program program) {
         this.dateOfReg = dateOfReg;
         this.upfrontFee = upfrontFee;

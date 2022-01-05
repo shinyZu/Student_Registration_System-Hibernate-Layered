@@ -12,6 +12,7 @@ import lk.ijse.registration_system.business.custom.StudentBO;
 import lk.ijse.registration_system.dto.CustomDTO;
 import lk.ijse.registration_system.dto.RegistrationDTO;
 import lk.ijse.registration_system.dto.StudentDTO;
+import lk.ijse.registration_system.entity.Program;
 import lk.ijse.registration_system.entity.Registration;
 import lk.ijse.registration_system.util.DateTimeUtil;
 import lk.ijse.registration_system.util.NavigationUtil;
@@ -201,6 +202,12 @@ public class StudentRegistrationFormController extends DateTimeUtil {
             dob = java.sql.Date.valueOf(datePicker.getValue());
         }
 
+        /*ArrayList<Registration> registeredPrograms = new ArrayList<>();
+        registeredPrograms.add(new Registration(
+                java.sql.Date.valueOf(LocalDate.now()),
+                Double.parseDouble(txtUpfrontFee.getText()),
+                new Program(cmbProgram.getValue())
+        ));*/
 
         StudentDTO studentDTO = new StudentDTO(
                 cmbStudentId.getValue(),
@@ -213,6 +220,7 @@ public class StudentRegistrationFormController extends DateTimeUtil {
                 Integer.parseInt(txtAge.getText()),
                 txtEmail.getText(),
                 txtContactNo.getText()
+                //registeredPrograms
         );
 
         RegistrationDTO registrationDTO = new RegistrationDTO(
